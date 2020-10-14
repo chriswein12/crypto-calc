@@ -1,0 +1,60 @@
+:root {
+    --primary:  rgb(0, 0, 100);
+    --secondary: rgb(150, 150, 255);
+}
+
+header {
+    background-color: var(--primary);
+}
+
+h1,
+h2,
+h3,
+h4,
+p{
+    font-weight: 700;
+    margin: 0;
+    color: var(--secondary);
+    line-height: 1.25;
+}
+
+.card-header {
+    color: var(--primary);
+    background-color: var(--secondary);
+    padding: 2.5%;
+    border-radius: calc(.18rem - 1px) calc(.18rem - 1px) 0 0;
+  }
+
+  .card {
+    margin: 0 0 20px 0;
+    border: 3px solid var(--primary);
+    border-radius: .5 rem;
+  }
+
+  /* FORM */
+.form-label,
+.form-input,
+.form-textarea {
+  display: block;
+}
+
+.btn {
+    font-size: 1.3rem;
+    text-decoration:none;
+    padding: 6px 5px;
+    width: 100%;
+    display: block;
+    margin: 5px 0;
+    border-radius:.5rem;
+    color: var(--primary);
+    border: none;
+    outline: none;
+    background-color: var(--secondary);
+    box-shadow: 3px 3px var(--primary);
+    transform: translate(-1px, -1px);
+  }
+
+  .list-group {
+    padding: 0;
+    list-style: none;
+  }
