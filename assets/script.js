@@ -37,8 +37,8 @@ var displayStats = function(data, crypto) {
 cryptoSearchTerm.textContent = cryptoName;
 
  var cryptoClose = document.createElement("p")
- cryptoClose.textContent = data["Time Series (Digital Currency Daily)"];
-console.log(data["Time Series (Digital Currency Daily)"]["2018-01-20"]);
+ cryptoClose.textContent = data["Time Series (Digital Currency Daily)"]["2018-01-20"]["4a. close (USD)"];
+//console.log(data["Time Series (Digital Currency Daily)"]["2018-01-20"]);
 console.log(cryptoClose);
 }
 
