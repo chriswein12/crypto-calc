@@ -10,8 +10,7 @@ var cryptoSearchTerm = document.querySelector("#crypto-search-term")
 // api key = P4A34BK1ZIK2J6PV
 var getCryptoData = function(crypto){
 
-    var apiUrl = "https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=" + crypto +
-     "&market=USD&apikey=P4A34BK1ZIK2J6PV"        
+    var apiUrl = `https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=${crypto}&market=USD&apikey=P4A34BK1ZIK2J6PV`
     
     fetch(apiUrl)
     .then(function(response) {
@@ -36,8 +35,9 @@ var displayStats = function(data, crypto) {
     var cryptoName = crypto;
 cryptoSearchTerm.textContent = cryptoName;
 
+var testDate = "2018-01-20";
  var cryptoClose = document.createElement("p")
- cryptoClose.textContent = data["Time Series (Digital Currency Daily)"]["2018-01-20"]["4a. close (USD)"];
+ cryptoClose.textContent = data["Time Series (Digital Currency Daily)"][testDate]["4a. close (USD)"];
 //console.log(data["Time Series (Digital Currency Daily)"]["2018-01-20"]);
 console.log(cryptoClose);
 }
