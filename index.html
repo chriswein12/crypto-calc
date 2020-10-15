@@ -13,25 +13,33 @@
 
     </header>
 
-    <main>
-        <div class="row">
-            <div class="col-12 col-md-4">
+    <main class="flex-row justify-space-between">       
+            <div class="col-12 col-md-4">              
                 <div class="card">
-                  <h3 class="card-header">Search Crypto</h3>
+                  <h3 class="card-header">Enter Crypto</h3>
                   <form id="crypto-form" class="card-body">
                     <label class="form-label" for="crypto">Crypto</label>
                     <input name="crypto" id="crypto" type="text" autofocus="true" class="form-input" />
                     <button type="submit" class="btn">Get Crypto Calculations</button>
                   </form>          
-                </div>
+                </div>                         
+              <div class="card">
+                <h3 class="card-header text-uppercase">Search Crypto</h3>
+                <div class="card-body" id="coin-buttons">
+                  <button class="btn" data-coin="btc">Bitcoin</button>
+                  <button class="btn" data-coin="ltc">Litecoin</button>
+                  <button class="btn" data-coin="eth">Ethereum</button>
+                </div>        
               </div>
+            </div>
               <div class="col-12 col-md-8">
                 <div class="card">
-                <h2 class="subtitle">Crypto price for: <span id="crypto-search-term"></span></h2>
+                <h2 class="subtitle">Crypto price for: <span id="crypto-search-term"> = </span></h2>
                 <div id="crypto-container" class="list-group"></div>
               </div> 
             </div>   
-          </div>  
+          
+
     </main>
 <script src="./assets/script.js"></script>
 

@@ -6,6 +6,10 @@ var nameInputEl = document.querySelector("#crypto")
 var cryptoContainerEl = document.querySelector("#crypto-container")
 var cryptoSearchTerm = document.querySelector("#crypto-search-term")
 
+//Crypto coin button selector. 
+var coinButtonEl = document.querySelector("#coin-buttons");
+
+
 // var container to populate with crypto search data and fetch api
 // api key = P4A34BK1ZIK2J6PV
 var getCryptoData = function(crypto){
@@ -33,19 +37,28 @@ var getCryptoData = function(crypto){
 var displayStats = function(data, crypto) {
    // displaying in html crypto name that was search 
     var cryptoName = crypto;
-cryptoSearchTerm.textContent = cryptoName;
+cryptoSearchTerm.textContent = cryptoName + " = ";
 
-var testDate = "2018-01-20";
- var cryptoClose = document.createElement("p")
- cryptoClose.textContent = data["Time Series (Digital Currency Daily)"][testDate]["4a. close (USD)"];
-//console.log(data["Time Series (Digital Currency Daily)"]["2018-01-20"]);
+var testDate = "2019-01-20";
+ var cryptoClose = document.createElement("h2")
+ cryptoClose.id = "coinPrice"
+ cryptoClose.textContent = "$ " + data["Time Series (Digital Currency Daily)"][testDate]["4a. close (USD)"];
+
+// dispalying crypto close on html
+cryptoContainerEl.appendChild(cryptoClose);
+
 console.log(cryptoClose);
 }
 
 //prevented refresh of browser
 var formSubmitHandler = function(event) {
     event.preventDefault();
-    console.log(event)
+    console.log(event);
+    
+   // removing searched crypto token from button element.  
+    var formSearch = document.getElementById("coinPrice")
+    if (formSearch)
+    formSearch.parentNode.removeChild(formSearch);
 
 // Var holding crypto name that was given
 var cryptoName = nameInputEl.value.trim();
@@ -59,7 +72,22 @@ if(cryptoName) {
     alert("Please enter Crypto Name")
 }
 }
+//var for coin button selector
+var buttonClickHandler = function(event) {
+    var coin = event.target.getAttribute("data-coin");
+    if (coin) {
+        getCryptoData(coin);
 
+        //clear old content
+        cryptoContainerEl.textContent = "";
+    }
+}
+
+
+// event listener for crypto coin button
+coinButtonEl.addEventListener("click", buttonClickHandler);
 
 // event listener to call formSubmitHandler to start the process. 
+
 cryptoFormEl.addEventListener("submit", formSubmitHandler);
+
