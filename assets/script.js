@@ -36,7 +36,10 @@ var displayStats = function(data, crypto) {
     var cryptoName = crypto;
 cryptoSearchTerm.textContent = cryptoName;
 
-console.log(data);
+ var cryptoClose = document.createElement("p")
+ cryptoClose.textContent = data["Time Series (Digital Currency Daily)"];
+console.log(data["Time Series (Digital Currency Daily)"]["2018-01-20"]);
+console.log(cryptoClose);
 }
 
 //prevented refresh of browser
