@@ -39,10 +39,13 @@ var displayStats = function(data, crypto) {
     var cryptoName = crypto;
 cryptoSearchTerm.textContent = cryptoName + " = ";
 
-var testDate = "2019-01-20";
+// using moment to add current date. 
+var currentDate = moment().format("YYYY-MM-DD");
+console.log(currentDate);
+
  var cryptoClose = document.createElement("h2")
  cryptoClose.id = "coinPrice"
- cryptoClose.textContent = "$ " + data["Time Series (Digital Currency Daily)"][testDate]["4a. close (USD)"];
+ cryptoClose.textContent = "$ " + data["Time Series (Digital Currency Daily)"][currentDate]["4a. close (USD)"];
 
 // dispalying crypto close on html
 cryptoContainerEl.appendChild(cryptoClose);
