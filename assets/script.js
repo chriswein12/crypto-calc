@@ -1,5 +1,5 @@
 // var container to hold crypto data return
-var cryptoContainerEl = document.querySelector("#crypto-container")
+var cryptoContainerEl = document.querySelector("#output")
 
 // var container to populate with crypto search data and fetch api
 var getCryptoData = function(crypto){
