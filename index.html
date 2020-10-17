@@ -19,54 +19,53 @@
 
   </section>
 
+  <!-- The rest of the page which will include the form and results -->
   <main>
     <h2 class="center-align">Cryptocurrency Value Calculator</h2>
     <p class="center-align">~ Calculate the change in your cryptocurrency value over time ~</p>
     
     <div class="container">
-      <form class="row">
-        $
-        <div class="input-field inline">
-          <input id="dollar-amount" type="number" />
-          <label for="dollar-amount">Amount:</label>
-        </div>  
-      </form>
-
-      <form class="input-field col s12">
-        <select name= "crypto" id="crypto-select" onchange="copy();">
-          <option value="">Select a Crypto Currency:</option>
-          <option value="btc" >Bitcoin</option>
-          <option value="eth">Ethereum</option>
-          <option value="xrp">XRP</option>
-          <option value="bch">Bitcoin Cash</option>
-          <option value="bnb">Binance Coin</option>
-          <option value="eos">EOS</option>
-          <option value="xmr">Monero</option>
-          <option value="ltc">Litecoin</option>
-          <option value="xlm">Stellar</option>
-          <option value="doge">Dogecoin</option>
-        </select>
-        <label>Purchased into:</label>
-
-      </form>
       <form>
+          
+        <div>
+          $
+          <div class="input-field inline">
+            <input id="dollar-amount" type="number" />
+            <label for="dollar-amount">Amount:</label>
+          </div>  
+        </div>
 
+        <div class="input-field">
+          <label for="crypto">Purchased into:</label>
+          <select name= "crypto" id="crypto-select" onchange="copy();">
+            <option value="">Select a Crypto Currency:</option>
+            <option value="btc" >Bitcoin</option>
+            <option value="eth">Ethereum</option>
+            <option value="xrp">XRP</option>
+            <option value="bch">Bitcoin Cash</option>
+            <option value="bnb">Binance Coin</option>
+            <option value="eos">EOS</option>
+            <option value="xmr">Monero</option>
+            <option value="ltc">Litecoin</option>
+            <option value="xlm">Stellar</option>
+            <option value="doge">Dogecoin</option>
+          </select>
+        </div>
+        
+        <div>
+          <input type="text" id="start-date" placeholder="mm/dd/yyyy" autocomplete="off" />
+          <input type="text" id="end-date" placeholder="mm/dd/yyyy" autocomplete="off" />
+        </div>
+
+        <div>
+          <button type="submit">Calculate</button>
+        </div>
       </form>
 
-      
-      <!-- div container holding crypto currency selector    -->
-      <div>
-        <!--  -->
+      <!-- Output Div -->
+      <div></div>
+
     </div>
-    <div>
-      <!-- div container holding crypto currency USD    -->
-      <!-- <div>
-        <h2>Crypto price:</h2>  -->
-        <!-- h2 will populate from the function completion in script.js    -->
-        <h2 id="crypto-container"></h2>
-      </div> 
-    </div> 
-  </div>         
 
   </main>
 
