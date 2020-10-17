@@ -3,47 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
     <link rel="stylesheet" href="./assets/style.css">
     <title>Crypto Calc</title>
 </head>
+
 <body>
-<header>
+  <header class="cyan darken-4">
+    <h1 class="white-text">Crypto Calculator</h1>
+  </header>
 
-</header>
-<main>
-  
-  <div class="card-header">
-    <!-- div container holding crypto currency selector    -->
+  <!-- Section for ticker -->
+  <section>
+
+  </section>
+
+  <main>
+    <h2 class="center-align">Cryptocurrency Value Calculator</h2>
+    <p class="center-align">~ Calculate the change in your cryptocurrency value over time ~</p>
+    
+    <div class="container">
+      <form class="row">
+        $
+        <div class="input-field inline">
+          <input id="dollar-amount" type="number" />
+          <label for="dollar-amount">Amount:</label>
+        </div>  
+      </form>
+
+      <form class="input-field col s12">
+        <select name= "crypto" id="crypto-select" onchange="copy();">
+          <option value="">Select a Crypto Currency:</option>
+          <option value="btc" >Bitcoin</option>
+          <option value="eth">Ethereum</option>
+          <option value="xrp">XRP</option>
+          <option value="bch">Bitcoin Cash</option>
+          <option value="bnb">Binance Coin</option>
+          <option value="eos">EOS</option>
+          <option value="xmr">Monero</option>
+          <option value="ltc">Litecoin</option>
+          <option value="xlm">Stellar</option>
+          <option value="doge">Dogecoin</option>
+        </select>
+        <label>Purchased into:</label>
+
+      </form>
+      <form>
+
+      </form>
+
+      
+      <!-- div container holding crypto currency selector    -->
+      <div>
+        <!--  -->
+    </div>
     <div>
-      <select id="cryptoSelect" onchange="copy();">
-        <option value="">Select a Crypto Currency:</option>
-        <option value="btc" >Bitcoin</option>
-        <option value="eth">Ethereum</option>
-        <option value="xrp">XRP</option>
-        <option value="bch">Bitcoin Cash</option>
-        <option value="bnb">Binance Coin</option>
-        <option value="eos">EOS</option>
-        <option value="xmr">Monero</option>
-        <option value="ltc">Litecoin</option>
-        <option value="xlm">Stellar</option>
-        <option value="doge">Dogecoin</option>
-    </select>
-  </div>
-  <div>
-    <!-- div container holding crypto currency USD    -->
-    <div class="row">
-      <h2>Crypto price:</h2> 
-      <!-- h2 will populate from the function completion in script.js    -->
-      <h2 id="crypto-container"></h2>
+      <!-- div container holding crypto currency USD    -->
+      <!-- <div>
+        <h2>Crypto price:</h2>  -->
+        <!-- h2 will populate from the function completion in script.js    -->
+        <h2 id="crypto-container"></h2>
+      </div> 
     </div> 
-  </div> 
-</div>         
+  </div>         
 
-</main>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<script src="./assets/script.js"></script>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="./assets/script.js"></script>
 
 </body>
 </html>

@@ -50,7 +50,7 @@ console.log(cryptoClose);
 
 // function called from html when selector is released. Indicates an "onchange."
 function copy() {
-    var cryptoSelected = document.getElementById("cryptoSelect").value
+    var cryptoSelected = document.getElementById("crypto-select").value
     console.log(cryptoSelected);   
     getCryptoData(cryptoSelected);
 }

@@ -1,5 +1,15 @@
+body{
+  padding-top:0px;
+  margin-top: 0px;
+}
 
-.card-header {
-    padding: 2.5%;
-    border-radius: calc(.18rem - 1px) calc(.18rem - 1px) 0 0;
-  }
+h1 {
+  margin-top: 0;
+  padding: 20px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
