@@ -1,0 +1,36 @@
+:root {
+  --primary: rgb(0, 78, 78);
+  --white: #ffffff;
+}
+
+body{
+  padding-top:0px;
+  margin-top: 0px;
+}
+
+h1 {
+  margin-top: 0;
+  padding: 20px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.bg-primary {
+  background-color: var(--primary);
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+.text-white {
+  color: var(--white);
+}
+
+.primary-border {
+  border: 3px solid var(--primary);
+}
