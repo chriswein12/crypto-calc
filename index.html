@@ -26,9 +26,9 @@
     <p class="text-center">~ Calculate the change in your cryptocurrency value over time ~</p>
     
     <div class="grid-container">
-      <form>
+      <form class="bg-white form-box">
         <div class="grid-x grid-margin-x align-center">
-          <div class="cell medium-5">
+          <div class="cell medium-7">
             <label for="amount">Amount:
               <div class="input-group">
                 <span class="input-group-label">$</span>
@@ -39,7 +39,7 @@
         </div>
 
         <div class="grid-x grid-margin-x align-center">
-          <div class="cell medium-5">
+          <div class="cell medium-7">
             <label for="crypto-select">Purchased into:</label>
             <select name= "crypto" id="crypto-select" onchange="copy();">
               <option value="">Select a Cryptocurrency</option>
@@ -58,16 +58,16 @@
         </div>
         
         <div class="grid-x grid-margin-x align-center">
-          <label class="cell medium-4">Start date:
+          <label class="cell medium-5">Start date:
             <input type="text" id="start-date" placeholder="mm/dd/yyyy" autocomplete="off" />
           </label>
-          <label class="cell medium-4">End date:
+          <label class="cell medium-5">End date:
             <input type="text" id="end-date" placeholder="mm/dd/yyyy" autocomplete="off" />
           </label>
         </div>
 
         <div class="grid-x grid-margin-x align-center">
-          <div class="cell small-4">
+          <div class="cell small-6">
            <button type="submit" class="button expanded">Calculate</button>
           </div>
         </div>
