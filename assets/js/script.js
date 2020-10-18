@@ -3,7 +3,12 @@ var cryptoContainerEl = document.querySelector("#output");
 
 // potentional ticker solution
 // realtime api
+
+var ticker = function{
 //"https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=JPY&apikey=U2BVTTCYEI0FHFAD"
+}
+
+
 
 // var container to populate with crypto search data and fetch api
 var getCryptoData = function(crypto){
