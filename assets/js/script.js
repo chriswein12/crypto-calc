@@ -74,9 +74,12 @@ $("#start-date").datepicker({
     changeMonth: true,
     minDate: -730,
     maxDate: 0,
-    onSelect: function() { 
-        var startDate = $(this).datepicker('getDate'); 
-        console.log(startDate);        
+    onSelect: function(date){
+        var selectedDate = new Date(date);
+        var endDate = selectedDate;
+
+        $("#end-date").datepicker("option", "minDate", endDate);
+        console.log(selectedDate);
     }
 });
 
@@ -86,8 +89,11 @@ $("#end-date").datepicker({
     changeMonth: true,
     minDate: -730,
     maxDate: 0,
-    onSelect: function() { 
-        var endDate = $(this).datepicker('getDate'); 
-        console.log(endDate);        
+    onSelect: function(date){
+        var selectedDate = new Date(date);
+        var startDate = selectedDate;
+
+        $("#start-date").datepicker("option", "maxDate", startDate);
+        console.log(selectedDate);
     }
 });
