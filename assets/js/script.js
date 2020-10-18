@@ -1,36 +1,46 @@
 // var container to hold crypto data return
 var cryptoContainerEl = document.querySelector("#output");
-var dollarAmountEl = document.querySelector("#dollar-amount");
-var cryptoSelected = document.getElementById("crypto-select").value;
 
 // var container to populate with crypto search data and fetch api
 var getCryptoData = function(crypto){
 
-// creating url to call
-var apiUrl = `https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=${crypto}&market=USD&apikey=P4A34BK1ZIK2J6PV`
-    
-// fetching created url
-fetch(apiUrl)
-.then(function(response) {
-    // request was successful
-    if (response.ok){       
-            response.json().then(function(data){ 
-                displayStats(data);
-                // verifing dat is correct in console           
-                console.log(data);                
-            });
-            //error handler
-        } else {
-            alert("Error: " + response.statusText);
-        }        
+    // creating url to call
+    var apiUrl = `https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=${crypto}&market=USD&apikey=P4A34BK1ZIK2J6PV`
+        
+    // fetching created url
+    fetch(apiUrl)
+    .then(function(response) {
+        // request was successful
+        if (response.ok){       
+                response.json().then(function(data){ 
+                    displayStats(data);
+                    // verifing dat is correct in console           
+                    console.log(data);                
+                });
+                //error handler
+            } else {
+                alert("Error: " + response.statusText);
+            }        
     }); 
 }
 
-$("#dollar-calc").on("click", "#calculate-button", function(event) {
+$("#dollar-calc #calculate-button").click(function(event) {
     debugger;
-    var dollarAmount = $("#dollar-amount").value;
+    event.preventDefault();
+    var dollarAmount = document.getElementById("dollar-amount").value;
+    var cryptoSelected = document.getElementById("crypto-select").value;
+    var startTime = document.getElementById("")
+
+
+    if(dollarAmount === "" || Math.sign(dollarAmount) === -1) {
+        alert("Invalid");
+    } else if (cryptoSelected === "") {
+        alert("Select a cryptocurrency")
+    } else {
     console.log(dollarAmount);
-})
+    console.log(cryptoSelected);
+    };
+});
 
 // passing response data to html
 var displayStats = function(data) {
@@ -56,11 +66,6 @@ var displayStats = function(data) {
     console.log(cryptoClose);
 }
 
-// function called from html when selector is released. Indicates an "onchange."
-function copy() {
-    console.log(cryptoSelected);   
-    getCryptoData(cryptoSelected);
-}
 
 // Start date selection
 $("#start-date").datepicker({    
