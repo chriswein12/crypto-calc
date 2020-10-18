@@ -56,7 +56,17 @@ function copy() {
 }
 
 // Start date selection
-$("#start-date").datepicker();
+$("#start-date").datepicker({    
+    changeYear: true,
+    changeMonth: true,
+    minDate: -730,
+    maxDate: 0,
+});
 
 // End date selection
-$("#end-date").datepicker();
+$("#end-date").datepicker({    
+    changeYear: true,
+    changeMonth: true,
+    minDate: -730,
+    maxDate: 0,
+});
