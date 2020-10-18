@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/css/foundation.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Crypto Calc</title>
+</head>
+
+<body>
+  <header class="bg-primary">
+    <h1 class="text-white">Crypto Calculator</h1>
+  </header>
+
+  <!-- Section for ticker -->
+  <section>
+
+  </section>
+
+  <!-- The rest of the page which will include the form and results -->
+  <main>
+    <h2 class="text-center">Cryptocurrency Value Calculator</h2>
+    <p class="text-center">- Calculate the change in your cryptocurrency value over time -</p>
+   
+    <!-- Full form-->
+    <div class="grid-container">
+      <form id="dollar-calc" class="bg-white form-box">
+
+        <!-- Input for the dollar amount -->
+        <div class="grid-x grid-margin-x align-center">
+          <div class="cell medium-7">
+            <label for="dollar-amount">Amount:
+              <div class="input-group">
+                <span class="input-group-label">$</span>
+                <input id="dollar-amount" class="input-group-field" type="number">
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Selection for the Cryptocurrency type -->
+        <div class="grid-x grid-margin-x align-center">
+          <div class="cell medium-7">
+            <label for="crypto-select">Purchased into:</label>
+            <select name= "crypto" id="crypto-select" onchange="copy();">
+              <option value="">Select a cryptocurrency</option>
+              <option value="btc" >Bitcoin</option>
+              <option value="eth">Ethereum</option>
+              <option value="xrp">XRP</option>
+              <option value="bch">Bitcoin Cash</option>
+              <option value="bnb">Binance Coin</option>
+              <option value="eos">EOS</option>
+              <option value="xmr">Monero</option>
+              <option value="ltc">Litecoin</option>
+              <option value="xlm">Stellar</option>
+              <option value="doge">Dogecoin</option>
+            </select>
+          </div>
+        </div>
+        
+        <!-- Input for the start and end calculation dates -->
+        <div class="grid-x grid-margin-x align-center">
+          <label class="cell medium-5">Starting calculation date:
+            <input type="text" id="start-date" placeholder="mm/dd/yyyy" autocomplete="off" />
+          </label>
+          <label class="cell medium-5">Ending calculation date:
+            <input type="text" id="end-date" placeholder="mm/dd/yyyy" autocomplete="off" />
+          </label>
+        </div>
+
+        <div class="grid-x grid-margin-x align-center">
+          <div class="cell small-6">
+           <button type="submit" id="calculate-button" class="button expanded">Calculate</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+          <!-- Output Div -->
+    <div id="output" class="grid-container"></div>
+
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+  <script src="./assets/js/script.js"></script>
+
+</body>
+</html>
