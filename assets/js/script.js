@@ -1,11 +1,9 @@
 // var container to hold crypto data return
 var cryptoContainerEl = document.querySelector("#output");
 
-// var container holding dates
-// var startDate = document.querySelector("#start-date").text;
-// console.log(startDate);
-// var endDate = document.querySelector("#end-date").text;
-// console.log(endDate);
+// potentional ticker solution
+// realtime api
+//"https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=JPY&apikey=U2BVTTCYEI0FHFAD"
 
 // var container to populate with crypto search data and fetch api
 var getCryptoData = function(crypto){
