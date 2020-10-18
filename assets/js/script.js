@@ -3,6 +3,12 @@ var cryptoContainerEl = document.querySelector("#output");
 var dollarAmountEl = document.querySelector("#dollar-amount");
 var cryptoSelected = document.getElementById("crypto-select").value;
 
+// var container holding dates
+// var startDate = document.querySelector("#start-date").text;
+// console.log(startDate);
+// var endDate = document.querySelector("#end-date").text;
+// console.log(endDate);
+
 // var container to populate with crypto search data and fetch api
 var getCryptoData = function(crypto){
 
@@ -68,6 +74,10 @@ $("#start-date").datepicker({
     changeMonth: true,
     minDate: -730,
     maxDate: 0,
+    onSelect: function() { 
+        var startDate = $(this).datepicker('getDate'); 
+        console.log(startDate);        
+    }
 });
 
 // End date selection
@@ -76,4 +86,8 @@ $("#end-date").datepicker({
     changeMonth: true,
     minDate: -730,
     maxDate: 0,
+    onSelect: function() { 
+        var endDate = $(this).datepicker('getDate'); 
+        console.log(endDate);        
+    }
 });
