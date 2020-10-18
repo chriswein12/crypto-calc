@@ -54,3 +54,9 @@ function copy() {
     console.log(cryptoSelected);   
     getCryptoData(cryptoSelected);
 }
+
+// Start date selection
+$("#start-date").datepicker();
+
+// End date selection
+$("#end-date").datepicker();
