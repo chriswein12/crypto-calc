@@ -69,26 +69,37 @@ function copy() {
 }
 
 // Start date selection
-$("#start-date").datepicker({    
+
+$("#start-date").datepicker({ 
+    // storing date in a diffrent format from displayed 
+    dateFormat: "yy-mm-dd",  
+    // making the year and month drop down selectable
     changeYear: true,
     changeMonth: true,
-    minDate: -730,
+    // setting a min/max date
+    minDate: -730,    
     maxDate: 0,
+    //setting the max date for the second date picker
     onSelect: function(date){
-        var selectedDate = new Date(date);
-        var endDate = selectedDate;
+        var endDate = new Date(date);
+        
 
         $("#end-date").datepicker("option", "minDate", endDate);
-        console.log(selectedDate);
+        console.dir(endDate);
     }
 });
 
 // End date selection
-$("#end-date").datepicker({    
+$("#end-date").datepicker({
+    // storing date in a diffrent format from displayed  
+    dateFormat: "yy-mm-dd", 
+    // setting a min date  
     changeYear: true,
     changeMonth: true,
+    // setting a min/max date
     minDate: -730,
     maxDate: 0,
+    //setting the max date for the second date picker
     onSelect: function(date){
         var selectedDate = new Date(date);
         var startDate = selectedDate;

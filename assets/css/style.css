@@ -19,6 +19,12 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none; 
   margin: 0; 
 }
+input::-webkit-calendar-picker-indicator{
+  display: none;
+}
+input[type="date"]::-webkit-input-placeholder{
+  visibility: hidden !important;
+}
 
 header {
   background-color: var(--primary);
