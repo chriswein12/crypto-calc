@@ -1,6 +1,12 @@
 // var container to hold crypto data return
 var cryptoContainerEl = document.querySelector("#output");
 
+// var container holding dates
+// var startDate = document.querySelector("#start-date").text;
+// console.log(startDate);
+// var endDate = document.querySelector("#end-date").text;
+// console.log(endDate);
+
 // var container to populate with crypto search data and fetch api
 var getCryptoData = function(crypto){
 
@@ -68,17 +74,42 @@ var displayStats = function(data) {
 
 
 // Start date selection
-$("#start-date").datepicker({    
+
+$("#start-date").datepicker({ 
+    // storing date in a diffrent format from displayed 
+    dateFormat: "yy-mm-dd",  
+    // making the year and month drop down selectable
     changeYear: true,
     changeMonth: true,
-    minDate: -730,
+    // setting a min/max date
+    minDate: -730,    
     maxDate: 0,
+    //setting the max date for the second date picker
+    onSelect: function(date){
+        var endDate = new Date(date);
+        
+
+        $("#end-date").datepicker("option", "minDate", endDate);
+        console.dir(endDate);
+    }
 });
 
 // End date selection
-$("#end-date").datepicker({    
+$("#end-date").datepicker({
+    // storing date in a diffrent format from displayed  
+    dateFormat: "yy-mm-dd", 
+    // setting a min date  
     changeYear: true,
     changeMonth: true,
+    // setting a min/max date
     minDate: -730,
     maxDate: 0,
+    //setting the max date for the second date picker
+    onSelect: function(date){
+        var selectedDate = new Date(date);
+        var startDate = selectedDate;
+
+        $("#start-date").datepicker("option", "maxDate", startDate);
+        console.log(selectedDate);
+    }
 });
