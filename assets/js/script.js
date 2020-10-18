@@ -3,9 +3,39 @@ var cryptoContainerEl = document.querySelector("#output");
 
 // potentional ticker solution
 // realtime api
+// api key =U2BVTTCYEI0FHFAD
+var cryptoExchangeEl = document.querySelector("#btc");
 
-var ticker = function{
-//"https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=JPY&apikey=U2BVTTCYEI0FHFAD"
+var ticker = function(){
+var array = "btc";
+console.log(array);
+ var realTimeApiUrl = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=${array}&to_currency=CNY&apikey=U2BVTTCYEI0FHFAD`
+fetch(realTimeApiUrl)
+.then(function(response) { 
+     response.json().then(function(exchange){ 
+         // verifing dat is correct in console  
+        displayExchange(exchange)
+        console.log(exchange);                
+    });           
+});
+}
+
+var displayExchange = function(exchange) {
+    // clearing previous search
+    var formSearch = document.getElementById("coinPrice")
+        if (formSearch)
+        formSearch.parentNode.removeChild(formSearch);
+
+    // creating dom to display on index html
+    var cryptoExchange = document.createElement("h3")
+    cryptoExchange.id = "coinPrice"
+    cryptoExchange.textContent = "$ " + exchange["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
+    
+    // attaching crypto close on html container
+    cryptoExchangeEl.appendChild(cryptoExchange);
+
+    // verifing closing price recieved in console 
+    console.log(cryptoExchange);
 }
 
 
@@ -116,3 +146,5 @@ $("#end-date").datepicker({
         console.log(selectedDate);
     }
 });
+
+ticker();
