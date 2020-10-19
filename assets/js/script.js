@@ -1,5 +1,5 @@
 // var container to hold crypto data return
-var cryptoContainerEl = document.querySelector("#output");
+var outputContainerEl = document.querySelector("#output");
 
 // var container holding dates
 // var startDate = document.querySelector("#start-date").text;
@@ -19,7 +19,7 @@ var getCryptoData = function(crypto){
         // request was successful
         if (response.ok){       
                 response.json().then(function(data){ 
-                    displayStats(data);
+                    calculateStats(data);
                     // verifing dat is correct in console           
                     console.log(data);                
                 });
@@ -31,48 +31,64 @@ var getCryptoData = function(crypto){
 }
 
 $("#dollar-calc #calculate-button").click(function(event) {
-    debugger;
     event.preventDefault();
     var dollarAmount = document.getElementById("dollar-amount").value;
     var cryptoSelected = document.getElementById("crypto-select").value;
-    var startTime = document.getElementById("")
+    var startDate = document.getElementById("start-date").value;
+    var endDate = document.getElementById("end-date").value;
 
 
     if(dollarAmount === "" || Math.sign(dollarAmount) === -1) {
         alert("Invalid");
     } else if (cryptoSelected === "") {
-        alert("Select a cryptocurrency")
+        alert("Select a cryptocurrency");
+    } else if (startDate === "" || endDate === "") {
+        alert ("Please enter both a start and end date");
     } else {
-    console.log(dollarAmount);
-    console.log(cryptoSelected);
+    getCryptoData(cryptoSelected);
     };
 });
 
 // passing response data to html
-var displayStats = function(data) {
+var calculateStats = function(cryptoData) {
+    debugger;
+    var dollarAmount = document.getElementById("dollar-amount").value;
+    var cryptoAmount = document.getElementById("crypto-amount").value;
+    var startDate = document.getElementById("start-date").value;
+    var endDate = document.getElementById("end-date").value;
     // clearing previous search
-    var formSearch = document.getElementById("coinPrice")
-        if (formSearch)
-        formSearch.parentNode.removeChild(formSearch);
+    // var formSearch = document.getElementById("coinPrice")
+    //     if (formSearch)
+    //     formSearch.parentNode.removeChild(formSearch);
 
-    // using moment to add current date. 
-    var currentDate = moment().format("YYYY-MM-DD");
-    // verifing currentDate in console
-    console.log(currentDate);
+    var startPrice = cryptoData["Time Series (Digital Currency Daily)"][startDate]["4a. close (USD)"];
+    var endPrice = cryptoData["Time Series (Digital Currency Daily)"][endDate]["4a. close (USD)"];
+    console.log(startPrice)
+    console.log(endPrice);
 
-    // creating dom to display on index html
-    var cryptoClose = document.createElement("h2")
-    cryptoClose.id = "coinPrice"
-    cryptoClose.textContent = "$ " + data["Time Series (Digital Currency Daily)"][currentDate]["4a. close (USD)"];
+    if (cryptoAmount === "") {
+        var calculatedCryptoAmount = dollarAmount / startPrice;
+        var startValue = dollarAmount;
+    }
+    else {
+        var calculatedCryptoAmount = cryptoAmount;
+        var startValue = cryptoAmount * startPrice;
+    }
     
-    // attaching crypto close on html container
-    cryptoContainerEl.appendChild(cryptoClose);
+    var endValue = calculatedCryptoAmount * endPrice;
 
-    // verifing closing price recieved in console 
-    console.log(cryptoClose);
+
+    var percentChange = ((startPrice - endPrice)/startPrice)*100;
+    var gainLoss = endValue - startValue;
+    console.log(percentChange);
+    console.log(gainLoss);
+
+    displayOutput(startDate, endDate, startPrice, endPrice, calculatedCryptoAmount, startValue, endValue, percentChange, gainLoss);
 }
 
-
+var displayOutput = function(startDate, endDate, startPrice, endPrice, calculatedCryptoAmount, startValue, endValue, percentChange, gainLoss) {
+    console.log(startDate, endDate, startPrice, endPrice, calculatedCryptoAmount, startValue, endValue, percentChange, gainLoss);
+}
 // Start date selection
 
 $("#start-date").datepicker({ 
