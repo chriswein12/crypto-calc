@@ -6,20 +6,7 @@ var cryptoContainerEl = document.querySelector("#output");
 // api key =U2BVTTCYEI0FHFAD
 var cryptoExchangeEl = document.querySelector("#btc");
 
-var ticker = function(){
-var array = "btc";
-console.log(array);
- var realTimeApiUrl = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=${array}&to_currency=CNY&apikey=U2BVTTCYEI0FHFAD`
-fetch(realTimeApiUrl)
-.then(function(response) { 
-     response.json().then(function(exchange){ 
-         // verifing dat is correct in console  
-        displayExchange(exchange)
-        console.log(exchange);                
-    });           
-});
-}
-
+   
 var displayExchange = function(exchange) {
     // clearing previous search
     var formSearch = document.getElementById("coinPrice")
@@ -38,6 +25,14 @@ var displayExchange = function(exchange) {
     console.log(cryptoExchange);
 }
 
+var ticker = function(){
+    var array = "btc";
+    console.log(array);
+     var realTimeApiUrl = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=${array}&to_currency=USD&apikey=U2BVTTCYEI0FHFAD`
+    fetch(realTimeApiUrl)
+    .then(response => response.json())
+    .then(data => displayExchange(data)); 
+    }
 
 
 // var container to populate with crypto search data and fetch api
