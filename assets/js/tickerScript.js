@@ -30,7 +30,7 @@ var displayExchangeBtc = function(exchange) {
         formSearch.parentNode.removeChild(formSearch);
 
     // creating dom to display on index html
-    var cryptoExchangeBtc = document.createElement("h3")
+    var cryptoExchangeBtc = document.createElement("span")
     cryptoExchangeBtc.id = "coinPriceBtc"
     cryptoExchangeBtc.textContent = "$ " + exchange["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
     
@@ -65,9 +65,9 @@ var tickerEth = function(){
             formSearch.parentNode.removeChild(formSearch);
     
         // creating dom to display on index html
-        var cryptoExchangeEth = document.createElement("h3")
+        var cryptoExchangeEth = document.createElement("span")
         cryptoExchangeEth.id = "coinPriceEth"
-        cryptoExchangeEth.textContent = "$ " + exchange["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
+        cryptoExchangeEth.textContent = "$ " + Math.round( (exchange["Realtime Currency Exchange Rate"]["5. Exchange Rate"])*100)/100;
         
         // attaching crypto close on html container
         cryptoExchangeElEth.appendChild(cryptoExchangeEth);
@@ -101,7 +101,7 @@ var tickerXrp = function(){
            formSearch.parentNode.removeChild(formSearch);
    
        // creating dom to display on index html
-       var cryptoExchangeXrp = document.createElement("h3")
+       var cryptoExchangeXrp = document.createElement("span")
        cryptoExchangeXrp.id = "coinPriceXrp"
        cryptoExchangeXrp.textContent = "$ " + exchange["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
        
