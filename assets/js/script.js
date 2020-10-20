@@ -51,7 +51,7 @@ $("#dollar-calc #calculate-button").click(function(event) {
 
 // passing response data to html
 var calculateStats = function(cryptoData) {
-    debugger;
+    
     var dollarAmount = document.getElementById("dollar-amount").value;
     var cryptoAmount = document.getElementById("crypto-amount").value;
     var startDate = document.getElementById("start-date").value;
@@ -63,8 +63,6 @@ var calculateStats = function(cryptoData) {
 
     var startPrice = cryptoData["Time Series (Digital Currency Daily)"][startDate]["4a. close (USD)"];
     var endPrice = cryptoData["Time Series (Digital Currency Daily)"][endDate]["4a. close (USD)"];
-    console.log(startPrice)
-    console.log(endPrice);
 
     if (cryptoAmount === "") {
         var calculatedCryptoAmount = dollarAmount / startPrice;
@@ -74,20 +72,42 @@ var calculateStats = function(cryptoData) {
         var calculatedCryptoAmount = cryptoAmount;
         var startValue = cryptoAmount * startPrice;
     }
-    
+
     var endValue = calculatedCryptoAmount * endPrice;
 
 
-    var percentChange = ((startPrice - endPrice)/startPrice)*100;
+    var percentChange = ((endPrice - startPrice)/startPrice)*100;
     var gainLoss = endValue - startValue;
-    console.log(percentChange);
-    console.log(gainLoss);
 
-    displayOutput(startDate, endDate, startPrice, endPrice, calculatedCryptoAmount, startValue, endValue, percentChange, gainLoss);
+    if (Math.sign(gainLoss) === -1) {
+        var sign = "decreased";
+    }
+    else {
+        var sign = "increased";
+    }
+    debugger;
+
+    var [sYear, sMonth, sDay] = startDate.split("-");
+    var [eYear, eMonth, eDay] = endDate.split("-");
+
+    var outputs = {
+        sDate: sMonth + "/" + sDay + "/" + sYear,
+        eDate: eMonth + "/" + eDay + "/" + eYear,
+        sPrice: "$" + (Math.round(startPrice * 100)/100).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'),
+        ePrice: "$" + (Math.round(endPrice * 100)/100).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'),
+        sValue: "$" + (Math.round(startValue * 100)/100).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'),
+        eValue: "$" + (Math.round(endValue * 100)/100).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'),
+        cryptoAmount: (Math.round(calculatedCryptoAmount * 100)/100).toFixed(3).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'),
+        percentChange: (Math.round(Math.abs(percentChange) * 100)/100).toFixed(2)*Math.sign(percentChange) + "%",
+        valueChange: "$" + ((Math.round(Math.abs(gainLoss) * 100)/100).toFixed(2)).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'),
+        sign: sign
+    };
+
+    displayOutput(outputs);
 }
 
-var displayOutput = function(startDate, endDate, startPrice, endPrice, calculatedCryptoAmount, startValue, endValue, percentChange, gainLoss) {
-    console.log(startDate, endDate, startPrice, endPrice, calculatedCryptoAmount, startValue, endValue, percentChange, gainLoss);
+var displayOutput = function(outputs) {
+    console.log(outputs);
 }
 // Start date selection
 
