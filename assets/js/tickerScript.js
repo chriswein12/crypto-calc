@@ -14,15 +14,16 @@ console.log(array);
  var realTimeApiUrl = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=${array}&to_currency=USD&apikey=U2BVTTCYEI0FHFAD`
 fetch(realTimeApiUrl)
 .then(function(response) {
+    
     // request was successful          
-    response.json().then(function(exchange){ 
+    response.ok.json().then(function(exchange){ 
         // verifing dat is correct in console  
         displayExchangeBtc(exchange)
         console.log(exchange);                
  });  
  // catch for lost of internet  
 }).catch(function(error) {
-    alert("Unable to connect to server at this time.")
+    console.log("Unable to connect to server at this time.")
 })
 }
 
@@ -51,14 +52,14 @@ var tickerEth = function(){
     fetch(realTimeApiUrl)
     .then(function(response) {
         // request was successful          
-        response.json().then(function(exchange){ 
+        response.ok.json().then(function(exchange){ 
             // verifing dat is correct in console  
             displayExchangeEth(exchange)
             console.log(exchange);                
      });  
      // catch for lost of internet  
     }).catch(function(error) {
-        alert("Unable to connect to server at this time.")
+        console.log("Unable to connect to server at this time.")
     })
     }
     
@@ -88,14 +89,14 @@ var tickerXrp = function(){
    fetch(realTimeApiUrl)
    .then(function(response) {
        // request was successful          
-       response.json().then(function(exchange){ 
+       response.ok.json().then(function(exchange){ 
            // verifing dat is correct in console  
            displayExchangeXrp(exchange)
            console.log(exchange);                
     });  
     // catch for lost of internet  
    }).catch(function(error) {
-       alert("Unable to connect to server at this time.")
+       console.log("Unable to connect to server at this time.")
    })
    }
    
@@ -124,14 +125,14 @@ var tickerUsdt = function(){
    fetch(realTimeApiUrl)
    .then(function(response) {
        // request was successful          
-       response.json().then(function(exchange){ 
+       response.ok.json().then(function(exchange){ 
            // verifing dat is correct in console  
            displayExchangeUsdt(exchange)
            console.log(exchange);                
     });  
     // catch for lost of internet  
    }).catch(function(error) {
-       alert("Unable to connect to server at this time.")
+       console.log("Unable to connect to server at this time.")
    })
    }
 
@@ -160,14 +161,14 @@ var tickerUsdt = function(){
    fetch(realTimeApiUrl)
    .then(function(response) {
        // request was successful          
-       response.json().then(function(exchange){ 
+       response.ok.json().then(function(exchange){ 
            // verifing dat is correct in console  
            displayExchangeLtc(exchange)
            console.log(exchange);                
     });  
     // catch for lost of internet  
    }).catch(function(error) {
-       alert("Unable to connect to server at this time.")
+       console.log("Unable to connect to server at this time.")
    })
    }
    
