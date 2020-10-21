@@ -50,11 +50,12 @@ header {
   padding: 15px 30px;
   margin: 0px 10%;
 }
+
 a:link{
 color: black;
 }
 a:hover{
-  color: var(--white);
+  text-decoration: underline;
 }
 a:visited{
   color: black;
