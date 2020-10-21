@@ -16,7 +16,7 @@ fetch(realTimeApiUrl)
 .then(function(response) {
     
     // request was successful          
-    response.ok.json().then(function(exchange){ 
+    response.json().then(function(exchange){ 
         // verifing dat is correct in console  
         displayExchangeBtc(exchange)
         console.log(exchange);                
@@ -52,7 +52,7 @@ var tickerEth = function(){
     fetch(realTimeApiUrl)
     .then(function(response) {
         // request was successful          
-        response.ok.json().then(function(exchange){ 
+        response.json().then(function(exchange){ 
             // verifing dat is correct in console  
             displayExchangeEth(exchange)
             console.log(exchange);                
@@ -89,7 +89,7 @@ var tickerXrp = function(){
    fetch(realTimeApiUrl)
    .then(function(response) {
        // request was successful          
-       response.ok.json().then(function(exchange){ 
+       response.json().then(function(exchange){ 
            // verifing dat is correct in console  
            displayExchangeXrp(exchange)
            console.log(exchange);                
@@ -125,7 +125,7 @@ var tickerUsdt = function(){
    fetch(realTimeApiUrl)
    .then(function(response) {
        // request was successful          
-       response.ok.json().then(function(exchange){ 
+       response.json().then(function(exchange){ 
            // verifing dat is correct in console  
            displayExchangeUsdt(exchange)
            console.log(exchange);                
@@ -161,7 +161,7 @@ var tickerUsdt = function(){
    fetch(realTimeApiUrl)
    .then(function(response) {
        // request was successful          
-       response.ok.json().then(function(exchange){ 
+       response.json().then(function(exchange){ 
            // verifing dat is correct in console  
            displayExchangeLtc(exchange)
            console.log(exchange);                
@@ -201,11 +201,11 @@ tickerLtc();
 // refresh
 var refresh = function () {
     tickerBtc();
-    setTimeout(tickerEth, 10000);
-    setTimeout(tickerXrp, 20000);  
-    setTimeout(tickerUsdt, 30000); 
-    setTimeout(tickerLtc, 40000);   
+    setTimeout(tickerEth, 12000);
+    setTimeout(tickerXrp, 24000);  
+    setTimeout(tickerUsdt, 36000); 
+    setTimeout(tickerLtc, 48000);   
 };
-var timer = setInterval(refresh, 50000);
+var timer = setInterval(refresh, 61000);
 
 
