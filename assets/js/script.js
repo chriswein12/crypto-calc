@@ -2,11 +2,9 @@
 var outputContainerEl = document.querySelector("#output-box");
 var outputSummaryContainerEl = document.querySelector("#output-summary");
 
-// var container holding dates
-// var startDate = document.querySelector("#start-date").text;
-// console.log(startDate);
-// var endDate = document.querySelector("#end-date").text;
-// console.log(endDate);
+
+
+
 
 // var container to populate with crypto search data and fetch api
 var getCryptoData = function(crypto){
@@ -188,3 +186,4 @@ $("#end-date").datepicker({
         console.log(selectedDate);
     }
 });
+
