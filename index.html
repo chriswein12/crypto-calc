@@ -56,10 +56,21 @@
         <!-- Input for the dollar amount -->
         <div class="grid-x grid-margin-x align-center">
           <div class="cell medium-7">
-            <label for="dollar-amount">Amount:
+            <label for="dollar-amount">Amount in USD:
               <div class="input-group">
                 <span class="input-group-label">$</span>
                 <input id="dollar-amount" class="input-group-field" type="number">
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Input for the crypto amount -->
+        <div class="grid-x grid-margin-x align-center crypto-display">
+          <div class="cell medium-7">
+            <label for="crypto-amount">Amount of Crypto:
+              <div class="input-group">
+                <input id="crypto-amount" class="input-group-field" type="number">
               </div>
             </label>
           </div>
@@ -104,8 +115,46 @@
     </div>
 
           <!-- Output Div -->
-    <div id="output" class="grid-container"></div>
+    <div id="output-box" class="crypto-display">      
+      <h3 class="text-center">Results</h3>
 
+      <div id="output" class="grid-container">
+        <div id="output-style-box" class="bg-white form-box">
+          <div class="grid-x grid-margin-x align-center">
+            <div id="output-summary" class="cell medium-10"></div>
+          </div>
+
+        <br>
+
+          <div class="grid-x grid-margin-x">
+            <div class="cell medium-6">
+              <h5 id="start-price-title"></h5>
+              <p id="start-price"></p>
+            </div>
+
+            <div class="cell medium-6">
+              <h5 id="end-price-title"></h5>
+              <p id="end-price"></p>
+            </div>
+          </div>
+
+          <br>
+          
+          <div class="grid-x grid-margin-x">
+            <div class="cell medium-6">
+              <h5 id="start-value-title"></h5>
+              <p id="start-value"></p>
+            </div>
+
+            <div class="cell medium-6">
+              <h5 id="end-value-title"></h5>
+              <p id="end-value"></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
   </main>
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

@@ -54,10 +54,16 @@ header {
 a:link{
 color: black;
 }
+
 a:hover{
   text-decoration: underline;
 }
+
 a:visited{
   color: black;
   opacity: .5;
+}
+
+.crypto-display {
+  display: none;
 }
