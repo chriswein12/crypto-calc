@@ -1,5 +1,6 @@
 // var container to hold crypto data return
-var outputContainerEl = document.querySelector("#output");
+var outputContainerEl = document.querySelector("#output-box");
+var outputSummaryContainerEl = document.querySelector("#output-summary");
 
 // var container holding dates
 // var startDate = document.querySelector("#start-date").text;
@@ -85,12 +86,13 @@ var calculateStats = function(cryptoData) {
     else {
         var sign = "increased";
     }
-    debugger;
+    
 
     var [sYear, sMonth, sDay] = startDate.split("-");
     var [eYear, eMonth, eDay] = endDate.split("-");
 
     var outputs = {
+        cryptoType: document.getElementById("crypto-select").value.toUpperCase(),
         sDate: sMonth + "/" + sDay + "/" + sYear,
         eDate: eMonth + "/" + eDay + "/" + eYear,
         sPrice: "$" + (Math.round(startPrice * 100)/100).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'),
@@ -108,6 +110,48 @@ var calculateStats = function(cryptoData) {
 
 var displayOutput = function(outputs) {
     console.log(outputs);
+
+    outputContainerEl.removeAttribute("class");
+
+    var outputSummaryEl = document.createElement("h4");
+    outputSummaryEl.textContent = "Your " + outputs.cryptoType + " " + outputs.sign + " in value by " + outputs.valueChange;
+    var outputSubSummaryEl = document.createElement("h5");
+    outputSummaryEl.classList = "text-center";
+    outputSubSummaryEl.classList = "text-center";
+    outputSubSummaryEl.textContent = "(between " + outputs.sDate + " and " + outputs.eDate + " for your " + outputs.cryptoAmount + " in " + outputs.cryptoType + ")";
+    outputSummaryContainerEl.appendChild(outputSummaryEl);
+    outputSummaryContainerEl.appendChild(outputSubSummaryEl);
+
+    var startPriceTitleEl = document.querySelector("#start-price-title");
+    startPriceTitleEl.textContent = "Closing price on " + outputs.sDate + ":";
+
+    var startPriceEl = document.querySelector("#start-price");
+    startPriceEl.textContent = "1.000 " + outputs.cryptoType + " = " + outputs.sPrice;     
+
+    var endPriceTitleEl = document.querySelector("#end-price-title");
+    endPriceTitleEl.textContent = "Closing price on " + outputs.eDate + ":";
+
+    var endPriceEl = document.querySelector("#end-price");
+    endPriceEl.textContent = "1.000 " + outputs.cryptoType + " = " + outputs.ePrice;
+
+
+    var startValueTitleEl = document.querySelector("#start-value-title");
+    startValueTitleEl.textContent = "Your value on " + outputs.sDate + ":";
+
+    var startValueEl = document.querySelector("#start-value");
+    startValueEl.textContent = outputs.cryptoAmount + " " + outputs.cryptoType + " = " + outputs.sValue;     
+
+    var endValueTitleEl = document.querySelector("#end-value-title");
+    endValueTitleEl.textContent = "Your value on " + outputs.eDate + ":";
+
+    var endValueEl = document.querySelector("#end-value");
+    endValueEl.textContent = outputs.cryptoAmount + " " + outputs.cryptoType + " = " + outputs.eValue;
+
+
+
+
+
+
 }
 // Start date selection
 
