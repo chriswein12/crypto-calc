@@ -50,6 +50,13 @@ header {
   padding: 15px 30px;
   margin: 0px 10%;
 }
-.a-link{
+a:link{
 color: black;
+}
+a:hover{
+  color: var(--white);
+}
+a:visited{
+  color: black;
+  opacity: .5;
 }
