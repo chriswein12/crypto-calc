@@ -147,11 +147,6 @@ var displayOutput = function(outputs) {
     var endValueEl = document.querySelector("#end-value");
     endValueEl.textContent = outputs.cryptoAmount + " " + outputs.cryptoType + " = " + outputs.eValue;
 
-
-
-
-
-
 }
 // Start date selection
 
