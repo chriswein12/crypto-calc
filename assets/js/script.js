@@ -1,5 +1,6 @@
 // var container to hold crypto data return
-var cryptoContainerEl = document.querySelector("#output");
+var outputContainerEl = document.querySelector("#output-box");
+var outputSummaryContainerEl = document.querySelector("#output-summary");
 
 // var container holding dates
 // var startDate = document.querySelector("#start-date").text;
@@ -19,7 +20,7 @@ var getCryptoData = function(crypto){
         // request was successful
         if (response.ok){       
                 response.json().then(function(data){ 
-                    displayStats(data);
+                    calculateStats(data);
                     // verifing dat is correct in console           
                     console.log(data);                
                 });
@@ -31,48 +32,122 @@ var getCryptoData = function(crypto){
 }
 
 $("#dollar-calc #calculate-button").click(function(event) {
-    debugger;
     event.preventDefault();
     var dollarAmount = document.getElementById("dollar-amount").value;
     var cryptoSelected = document.getElementById("crypto-select").value;
-    var startTime = document.getElementById("")
+    var startDate = document.getElementById("start-date").value;
+    var endDate = document.getElementById("end-date").value;
 
 
     if(dollarAmount === "" || Math.sign(dollarAmount) === -1) {
         alert("Invalid");
     } else if (cryptoSelected === "") {
-        alert("Select a cryptocurrency")
+        alert("Select a cryptocurrency");
+    } else if (startDate === "" || endDate === "") {
+        alert ("Please enter both a start and end date");
     } else {
-    console.log(dollarAmount);
-    console.log(cryptoSelected);
+    getCryptoData(cryptoSelected);
     };
 });
 
 // passing response data to html
-var displayStats = function(data) {
-    // clearing previous search
-    var formSearch = document.getElementById("coinPrice")
-        if (formSearch)
-        formSearch.parentNode.removeChild(formSearch);
-
-    // using moment to add current date. 
-    var currentDate = moment().format("YYYY-MM-DD");
-    // verifing currentDate in console
-    console.log(currentDate);
-
-    // creating dom to display on index html
-    var cryptoClose = document.createElement("h2")
-    cryptoClose.id = "coinPrice"
-    cryptoClose.textContent = "$ " + data["Time Series (Digital Currency Daily)"][currentDate]["4a. close (USD)"];
+var calculateStats = function(cryptoData) {
     
-    // attaching crypto close on html container
-    cryptoContainerEl.appendChild(cryptoClose);
+    var dollarAmount = document.getElementById("dollar-amount").value;
+    var cryptoAmount = document.getElementById("crypto-amount").value;
+    var startDate = document.getElementById("start-date").value;
+    var endDate = document.getElementById("end-date").value;
+    // clearing previous search
+    // var formSearch = document.getElementById("coinPrice")
+    //     if (formSearch)
+    //     formSearch.parentNode.removeChild(formSearch);
 
-    // verifing closing price recieved in console 
-    console.log(cryptoClose);
+    var startPrice = cryptoData["Time Series (Digital Currency Daily)"][startDate]["4a. close (USD)"];
+    var endPrice = cryptoData["Time Series (Digital Currency Daily)"][endDate]["4a. close (USD)"];
+
+    if (cryptoAmount === "") {
+        var calculatedCryptoAmount = dollarAmount / startPrice;
+        var startValue = dollarAmount;
+    }
+    else {
+        var calculatedCryptoAmount = cryptoAmount;
+        var startValue = cryptoAmount * startPrice;
+    }
+
+    var endValue = calculatedCryptoAmount * endPrice;
+
+
+    var percentChange = ((endPrice - startPrice)/startPrice)*100;
+    var gainLoss = endValue - startValue;
+
+    if (Math.sign(gainLoss) === -1) {
+        var sign = "decreased";
+    }
+    else {
+        var sign = "increased";
+    }
+    
+
+    var [sYear, sMonth, sDay] = startDate.split("-");
+    var [eYear, eMonth, eDay] = endDate.split("-");
+
+    var outputs = {
+        cryptoType: document.getElementById("crypto-select").value.toUpperCase(),
+        sDate: sMonth + "/" + sDay + "/" + sYear,
+        eDate: eMonth + "/" + eDay + "/" + eYear,
+        sPrice: "$" + (Math.round(startPrice * 100)/100).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'),
+        ePrice: "$" + (Math.round(endPrice * 100)/100).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'),
+        sValue: "$" + (Math.round(startValue * 100)/100).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'),
+        eValue: "$" + (Math.round(endValue * 100)/100).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'),
+        cryptoAmount: (Math.round(calculatedCryptoAmount * 100)/100).toFixed(3).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'),
+        percentChange: (Math.round(Math.abs(percentChange) * 100)/100).toFixed(2)*Math.sign(percentChange) + "%",
+        valueChange: "$" + ((Math.round(Math.abs(gainLoss) * 100)/100).toFixed(2)).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'),
+        sign: sign
+    };
+
+    displayOutput(outputs);
 }
 
+var displayOutput = function(outputs) {
+    console.log(outputs);
 
+    outputContainerEl.removeAttribute("class");
+
+    var outputSummaryEl = document.createElement("h4");
+    outputSummaryEl.textContent = "Your " + outputs.cryptoType + " " + outputs.sign + " in value by " + outputs.valueChange;
+    var outputSubSummaryEl = document.createElement("h5");
+    outputSummaryEl.classList = "text-center";
+    outputSubSummaryEl.classList = "text-center";
+    outputSubSummaryEl.textContent = "(between " + outputs.sDate + " and " + outputs.eDate + " for your " + outputs.cryptoAmount + " in " + outputs.cryptoType + ")";
+    outputSummaryContainerEl.appendChild(outputSummaryEl);
+    outputSummaryContainerEl.appendChild(outputSubSummaryEl);
+
+    var startPriceTitleEl = document.querySelector("#start-price-title");
+    startPriceTitleEl.textContent = "Closing price on " + outputs.sDate + ":";
+
+    var startPriceEl = document.querySelector("#start-price");
+    startPriceEl.textContent = "1.000 " + outputs.cryptoType + " = " + outputs.sPrice;     
+
+    var endPriceTitleEl = document.querySelector("#end-price-title");
+    endPriceTitleEl.textContent = "Closing price on " + outputs.eDate + ":";
+
+    var endPriceEl = document.querySelector("#end-price");
+    endPriceEl.textContent = "1.000 " + outputs.cryptoType + " = " + outputs.ePrice;
+
+
+    var startValueTitleEl = document.querySelector("#start-value-title");
+    startValueTitleEl.textContent = "Your value on " + outputs.sDate + ":";
+
+    var startValueEl = document.querySelector("#start-value");
+    startValueEl.textContent = outputs.cryptoAmount + " " + outputs.cryptoType + " = " + outputs.sValue;     
+
+    var endValueTitleEl = document.querySelector("#end-value-title");
+    endValueTitleEl.textContent = "Your value on " + outputs.eDate + ":";
+
+    var endValueEl = document.querySelector("#end-value");
+    endValueEl.textContent = outputs.cryptoAmount + " " + outputs.cryptoType + " = " + outputs.eValue;
+
+}
 // Start date selection
 
 $("#start-date").datepicker({ 
