@@ -161,7 +161,7 @@ var tickerUsdt = function(){
    fetch(realTimeApiUrl)
    .then(function(response) {
        // request was successful          
-       response.okk.json().then(function(exchange){ 
+       response.json().then(function(exchange){ 
            // verifing dat is correct in console  
            displayExchangeLtc(exchange)
            console.log(exchange);                
