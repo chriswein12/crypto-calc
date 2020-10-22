@@ -2,10 +2,6 @@
 var outputContainerEl = document.querySelector("#output-box");
 var outputSummaryContainerEl = document.querySelector("#output-summary");
 
-
-
-
-
 // var container to populate with crypto search data and fetch api
 var getCryptoData = function(crypto){
 
@@ -29,13 +25,13 @@ var getCryptoData = function(crypto){
     }); 
 }
 
+// on button click, function checks for valid data, and then sends the type of cryptocurrency to the fetch function
 $("#dollar-calc #calculate-button").click(function(event) {
     event.preventDefault();
     var dollarAmount = document.getElementById("dollar-amount").value;
     var cryptoSelected = document.getElementById("crypto-select").value;
     var startDate = document.getElementById("start-date").value;
     var endDate = document.getElementById("end-date").value;
-
 
     if(dollarAmount === "" || Math.sign(dollarAmount) === -1) {
         alert("Invalid");
@@ -48,21 +44,20 @@ $("#dollar-calc #calculate-button").click(function(event) {
     };
 });
 
-// passing response data to html
+// function to calculate all of the information that will be sent as output data
 var calculateStats = function(cryptoData) {
     
+    // variables from form entry
     var dollarAmount = document.getElementById("dollar-amount").value;
     var cryptoAmount = document.getElementById("crypto-amount").value;
     var startDate = document.getElementById("start-date").value;
     var endDate = document.getElementById("end-date").value;
-    // clearing previous search
-    // var formSearch = document.getElementById("coinPrice")
-    //     if (formSearch)
-    //     formSearch.parentNode.removeChild(formSearch);
 
+    // variables from fetch data
     var startPrice = cryptoData["Time Series (Digital Currency Daily)"][startDate]["4a. close (USD)"];
     var endPrice = cryptoData["Time Series (Digital Currency Daily)"][endDate]["4a. close (USD)"];
 
+    // sets the variables based on which input method the user chooses
     if (cryptoAmount === "") {
         var calculatedCryptoAmount = dollarAmount / startPrice;
         var startValue = dollarAmount;
@@ -72,9 +67,8 @@ var calculateStats = function(cryptoData) {
         var startValue = cryptoAmount * startPrice;
     }
 
+    // calculated variables
     var endValue = calculatedCryptoAmount * endPrice;
-
-
     var percentChange = ((endPrice - startPrice)/startPrice)*100;
     var gainLoss = endValue - startValue;
 
@@ -85,10 +79,11 @@ var calculateStats = function(cryptoData) {
         var sign = "increased";
     }
     
-
+    // breaking apart date variable to array items to be rearranged in object element
     var [sYear, sMonth, sDay] = startDate.split("-");
     var [eYear, eMonth, eDay] = endDate.split("-");
 
+    // assigning all variables to an object called outputs
     var outputs = {
         cryptoType: document.getElementById("crypto-select").value.toUpperCase(),
         sDate: sMonth + "/" + sDay + "/" + sYear,
@@ -103,22 +98,24 @@ var calculateStats = function(cryptoData) {
         sign: sign
     };
 
+    // sending object to display function
     displayOutput(outputs);
 }
 
+// This function displays all of the calcutions
 var displayOutput = function(outputs) {
     console.log(outputs);
 
+    // removes the class that hides the diplay
     outputContainerEl.removeAttribute("class");
 
-    var outputSummaryEl = document.createElement("h4");
+    var outputSummaryEl = document.querySelector("#output-summary");
     outputSummaryEl.textContent = "Your " + outputs.cryptoType + " " + outputs.sign + " in value by " + outputs.valueChange;
-    var outputSubSummaryEl = document.createElement("h5");
-    outputSummaryEl.classList = "text-center";
-    outputSubSummaryEl.classList = "text-center";
-    outputSubSummaryEl.textContent = "(between " + outputs.sDate + " and " + outputs.eDate + " for your " + outputs.cryptoAmount + " in " + outputs.cryptoType + ")";
-    outputSummaryContainerEl.appendChild(outputSummaryEl);
-    outputSummaryContainerEl.appendChild(outputSubSummaryEl);
+    var percentChangeTitleEl = document.querySelector("#percent-change-title");
+    percentChangeTitleEl.textContent = "Percent change: " + outputs.percentChange;
+   
+    var outputDatesSummaryEl = document.querySelector("#output-dates-summary");
+    outputDatesSummaryEl.textContent = "(between " + outputs.sDate + " and " + outputs.eDate + ")";
 
     var startPriceTitleEl = document.querySelector("#start-price-title");
     startPriceTitleEl.textContent = "Closing price on " + outputs.sDate + ":";
@@ -132,7 +129,6 @@ var displayOutput = function(outputs) {
     var endPriceEl = document.querySelector("#end-price");
     endPriceEl.textContent = "1.000 " + outputs.cryptoType + " = " + outputs.ePrice;
 
-
     var startValueTitleEl = document.querySelector("#start-value-title");
     startValueTitleEl.textContent = "Your value on " + outputs.sDate + ":";
 
@@ -145,9 +141,12 @@ var displayOutput = function(outputs) {
     var endValueEl = document.querySelector("#end-value");
     endValueEl.textContent = outputs.cryptoAmount + " " + outputs.cryptoType + " = " + outputs.eValue;
 
+    document.querySelector("#output-box").scrollIntoView({
+        behavior: 'smooth'
+    });
+
 }
 // Start date selection
-
 $("#start-date").datepicker({ 
     // storing date in a diffrent format from displayed 
     dateFormat: "yy-mm-dd",  

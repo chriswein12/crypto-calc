@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
     <link rel="stylesheet" href="./assets/css/foundation.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Crypto Calc</title>
 </head>
 
 <body>
   <header class="bg-primary">
-    <h1 class="text-white">Crypto Calculator</h1>
+    <h1 class="text-white">CryptoCalc</h1>
   </header>
 
   <!-- Section for ticker -->
@@ -46,7 +47,7 @@
 
   <!-- The rest of the page which will include the form and results -->
   <main>
-    <h2 class="text-center">Cryptocurrency Value Calculator</h2>
+    <h2 class="text-center section-title">Cryptocurrency Value Calculator</h2>
     <p class="text-center">- Calculate the change in your cryptocurrency value over time -</p>
    
     <!-- Full form-->
@@ -118,37 +119,44 @@
     <div id="output-box" class="crypto-display">      
       <h3 class="text-center">Results</h3>
 
+      <!-- Main results showing change in values -->
       <div id="output" class="grid-container">
         <div id="output-style-box" class="bg-white form-box">
           <div class="grid-x grid-margin-x align-center">
-            <div id="output-summary" class="cell medium-10"></div>
+            <div class="cell medium-10">
+              <h4 class="h3 text-center" id="output-summary"></h4>
+              <h5 class="text-center" id="percent-change-title"></h5>
+              <h6 class="text-center" id="output-dates-summary"></h6>
+            </div>
           </div>
-
+  
         <br>
 
+          <!-- Shows the closing price on the start and end dates -->
           <div class="grid-x grid-margin-x">
             <div class="cell medium-6">
-              <h5 id="start-price-title"></h5>
-              <p id="start-price"></p>
+              <h5 class="text-center" id="start-price-title"></h5>
+              <p class="text-center" id="start-price"></p>
             </div>
 
             <div class="cell medium-6">
-              <h5 id="end-price-title"></h5>
-              <p id="end-price"></p>
+              <h5 class="text-center" id="end-price-title"></h5>
+              <p class="text-center" id="end-price"></p>
             </div>
           </div>
 
           <br>
-          
+
+          <!-- Shows the account values on the start and end dates -->
           <div class="grid-x grid-margin-x">
             <div class="cell medium-6">
-              <h5 id="start-value-title"></h5>
-              <p id="start-value"></p>
+              <h5 class="text-center" id="start-value-title"></h5>
+              <p class="text-center" id="start-value"></p>
             </div>
 
             <div class="cell medium-6">
-              <h5 id="end-value-title"></h5>
-              <p id="end-value"></p>
+              <h5 class="text-center" id="end-value-title"></h5>
+              <p class="text-center" id="end-value"></p>
             </div>
           </div>
 
@@ -156,6 +164,10 @@
       </div>
     </div>
   </main>
+  
+  <footer class="bg-primary">
+    <h6 class="footer-text text-white text-right">Created by Chris Wein and John Anderson</h6>
+  </footer>
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
