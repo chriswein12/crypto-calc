@@ -71,6 +71,22 @@ a:visited{
   opacity: .5;
 }
 
+#calculate-button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#clear-button {
+  background-color: rgba(238, 238, 238, 0);
+  color: rgb(92, 92, 92);
+  text-decoration: underline;
+  margin: 0;
+}
+
+#clear-button:hover {
+color: black;
+}
+
 .crypto-display {
   display: none;
 }

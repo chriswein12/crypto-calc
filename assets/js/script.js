@@ -32,15 +32,26 @@ $("#dollar-calc #calculate-button").click(function(event) {
     var cryptoSelected = document.getElementById("crypto-select").value;
     var startDate = document.getElementById("start-date").value;
     var endDate = document.getElementById("end-date").value;
+    var cryptoAmount = document.getElementById("crypto-amount").value;
 
-    if(dollarAmount === "" || Math.sign(dollarAmount) === -1) {
-        alert("Invalid");
+    if(dollarAmount === "" && cryptoAmount ==="") {
+        alert("Please enter in an amount");
+    } else if ((Math.sign(dollarAmount) === -1) || (Math.sign(cryptoAmount) === -1)) {
+        alert("Amount cannot be negative")
     } else if (cryptoSelected === "") {
-        alert("Select a cryptocurrency");
+        alert("Please select a cryptocurrency");
     } else if (startDate === "" || endDate === "") {
         alert ("Please enter both a start and end date");
     } else {
-    getCryptoData(cryptoSelected);
+        $('#dollar-amount').attr('disabled', true);
+        $('#crypto-amount').attr('disabled', true);
+        $('#crypto-select').attr('disabled', true);
+        $('#start-date').attr('disabled', true);
+        $('#end-date').attr('disabled', true);
+
+
+
+        getCryptoData(cryptoSelected);
     };
 });
 
@@ -86,6 +97,7 @@ var calculateStats = function(cryptoData) {
     // assigning all variables to an object called outputs
     var outputs = {
         cryptoType: document.getElementById("crypto-select").value.toUpperCase(),
+        cryptoFullName: cryptoData["Meta Data"]["3. Digital Currency Name"],
         sDate: sMonth + "/" + sDay + "/" + sYear,
         eDate: eMonth + "/" + eDay + "/" + eYear,
         sPrice: "$" + (Math.round(startPrice * 100)/100).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'),
@@ -110,7 +122,7 @@ var displayOutput = function(outputs) {
     outputContainerEl.removeAttribute("class");
 
     var outputSummaryEl = document.querySelector("#output-summary");
-    outputSummaryEl.textContent = "Your " + outputs.cryptoType + " " + outputs.sign + " in value by " + outputs.valueChange;
+    outputSummaryEl.textContent = "Your " + outputs.cryptoFullName + " " + outputs.sign + " in value by " + outputs.valueChange;
     var percentChangeTitleEl = document.querySelector("#percent-change-title");
     percentChangeTitleEl.textContent = "Percent change: " + outputs.percentChange;
    
@@ -146,6 +158,12 @@ var displayOutput = function(outputs) {
     });
 
 }
+
+// Clear Form Button function
+$("#dollar-calc #calculate-button").click(function(event) {
+    
+}
+
 // Start date selection
 
 $("#start-date").datepicker({ 
