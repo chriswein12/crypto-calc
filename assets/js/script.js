@@ -147,6 +147,7 @@ var displayOutput = function(outputs) {
 
 }
 // Start date selection
+
 $("#start-date").datepicker({ 
     // storing date in a diffrent format from displayed 
     dateFormat: "yy-mm-dd",  
@@ -158,11 +159,10 @@ $("#start-date").datepicker({
     maxDate: 0,
     //setting the max date for the second date picker
     onSelect: function(date){
-        var endDate = new Date(date);
-        
+           
 
-        $("#end-date").datepicker("option", "minDate", endDate);
-        console.dir(endDate);
+        $("#end-date").datepicker("option", "minDate", date);
+        console.dir(date);
     }
 });
 
@@ -178,11 +178,8 @@ $("#end-date").datepicker({
     maxDate: 0,
     //setting the max date for the second date picker
     onSelect: function(date){
-        var selectedDate = new Date(date);
-        var startDate = selectedDate;
-
-        $("#start-date").datepicker("option", "maxDate", startDate);
-        console.log(selectedDate);
+                
+        $("#start-date").datepicker("option", "maxDate", date);
+        console.log(date);
     }
 });
-
