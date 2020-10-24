@@ -43,14 +43,16 @@ $("#dollar-calc #calculate-button").click(function(event) {
     } else if (startDate === "" || endDate === "") {
         alert ("Please enter both a start and end date");
     } else {
+        // disable to input fields until the fetch, calculations, and display are complete so user can't change data halfway through
         $('#dollar-amount').attr('disabled', true);
         $('#crypto-amount').attr('disabled', true);
         $('#crypto-select').attr('disabled', true);
         $('#start-date').attr('disabled', true);
         $('#end-date').attr('disabled', true);
+        $('#calculate-button').attr('disabled', true);
+        $('#clear-button').attr('disabled', true);
 
-
-
+        // pass selection to the fetch function
         getCryptoData(cryptoSelected);
     };
 });
@@ -157,12 +159,21 @@ var displayOutput = function(outputs) {
         behavior: 'smooth'
     });
 
+    // Re-enable the form fields and buttons
+    $('#dollar-amount').attr('disabled', false);
+    $('#crypto-amount').attr('disabled', false);
+    $('#crypto-select').attr('disabled', false);
+    $('#start-date').attr('disabled', false);
+    $('#end-date').attr('disabled', false);
+    $('#calculate-button').attr('disabled', false);
+    $('#clear-button').attr('disabled', false);
+
 }
 
-// Clear Form Button function
+// Clear Form button function
 $("#dollar-calc #calculate-button").click(function(event) {
-    
-}
+    $("#dollar-calc").reset();
+});
 
 // Start date selection
 
