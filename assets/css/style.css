@@ -92,3 +92,9 @@ footer {
 .footer-text {
   padding: 5px 20px;
 }
+/* ticker display for mobile  */
+@media screen and (max-width:575px) {
+.no-cell-phone{
+  display: none;
+}
+}
