@@ -37,7 +37,7 @@ var displayExchangeBtc = function(exchange) {
     // creating dom to display on index html
     var cryptoExchangeBtc = document.createElement("h5")
     cryptoExchangeBtc.id = "coinPriceBtc"
-    cryptoExchangeBtc.textContent = "$ " + Math.round( (exchange["Realtime Currency Exchange Rate"]["5. Exchange Rate"])*10000)/10000;
+    cryptoExchangeBtc.textContent = "$ " + (Math.round( (exchange["Realtime Currency Exchange Rate"]["5. Exchange Rate"])*10000)/10000).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     
     // attaching crypto close on html container
     cryptoExchangeElBtc.appendChild(cryptoExchangeBtc);
@@ -73,7 +73,7 @@ var tickerEth = function(){
         // creating dom to display on index html
         var cryptoExchangeEth = document.createElement("h5")
         cryptoExchangeEth.id = "coinPriceEth"
-        cryptoExchangeEth.textContent = "$ " + Math.round( (exchange["Realtime Currency Exchange Rate"]["5. Exchange Rate"])*10000)/10000;
+        cryptoExchangeEth.textContent = "$ " + (Math.round( (exchange["Realtime Currency Exchange Rate"]["5. Exchange Rate"])*10000)/10000).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
         
         // attaching crypto close on html container
         cryptoExchangeElEth.appendChild(cryptoExchangeEth);
@@ -110,7 +110,7 @@ var tickerXrp = function(){
        // creating dom to display on index html
        var cryptoExchangeXrp = document.createElement("h5")
        cryptoExchangeXrp.id = "coinPriceXrp"
-       cryptoExchangeXrp.textContent = "$ " + Math.round( (exchange["Realtime Currency Exchange Rate"]["5. Exchange Rate"])*10000)/10000;
+       cryptoExchangeXrp.textContent = "$ " + (Math.round( (exchange["Realtime Currency Exchange Rate"]["5. Exchange Rate"])*10000)/10000).toFixed(4).replace('$1,');
        
        // attaching crypto close on html container
        cryptoExchangeElXrp.appendChild(cryptoExchangeXrp);
@@ -146,7 +146,7 @@ var tickerUsdt = function(){
        // creating dom to display on index html
        var cryptoExchangeUsdt = document.createElement("h5")
        cryptoExchangeUsdt.id = "coinPriceUsdt"
-       cryptoExchangeUsdt.textContent = "$ " + Math.round( (exchange["Realtime Currency Exchange Rate"]["5. Exchange Rate"])*10000)/10000;
+       cryptoExchangeUsdt.textContent = "$ " + (Math.round( (exchange["Realtime Currency Exchange Rate"]["5. Exchange Rate"])*10000)/10000).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
        
        // attaching crypto close on html container
        cryptoExchangeElUsdt.appendChild(cryptoExchangeUsdt);
@@ -182,7 +182,7 @@ var tickerUsdt = function(){
        // creating dom to display on index html
        var cryptoExchangeLtc = document.createElement("h5")
        cryptoExchangeLtc.id = "coinPriceLtc"
-       cryptoExchangeLtc.textContent = "$ " + Math.round( (exchange["Realtime Currency Exchange Rate"]["5. Exchange Rate"])*10000)/10000;
+       cryptoExchangeLtc.textContent = "$ " + (Math.round( (exchange["Realtime Currency Exchange Rate"]["5. Exchange Rate"])*10000)/10000).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
        
        // attaching crypto close on html container
        cryptoExchangeElLtc.appendChild(cryptoExchangeLtc);
