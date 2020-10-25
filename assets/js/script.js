@@ -266,6 +266,7 @@ $("#previous-searches").click(function() {
 
     $("#no-previous-searches").addClass("crypto-display");
     $("#table-container").addClass("crypto-display");
+    $("#cleared-previous-searches").addClass("crypto-display");
 
 
     if (!searches) {
@@ -311,4 +312,13 @@ $("#previous-searches").click(function() {
     }
 
 
+})
+
+$("#clear-searches").click(function() {
+    localStorage.removeItem("previousSearches"); 
+
+    var tableDataEl = document.querySelector("#table-data");
+    (tableDataEl).textContent = "";
+
+    $("#cleared-previous-searches").removeClass("crypto-display");
 })
