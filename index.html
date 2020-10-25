@@ -33,11 +33,11 @@
           <a href="https://coinmarketcap.com/currencies/xrp/" target="_blank" >XRP </a>
           <span class="text-center" id="xrp"></span>
         </h4> 
-        <h4 class="cell small-4 medium-2 text-center no-cell-phone" >
+        <h4 class="cell small-4 medium-2 text-center show-for-medium" >
           <a href="https://coinmarketcap.com/currencies/tether/" target="_blank" >Tether</a> 
           <span class="text-center" id="usdt"></span>
         </h4> 
-        <h4 class="cell small-4 medium-2 text-center no-cell-phone" >
+        <h4 class="cell small-4 medium-2 text-center show-for-medium" >
           <a href="https://coinmarketcap.com/currencies/litecoin/" target="_blank" >Litecoin</a> 
           <span class="text-center" id="ltc"></span>
         </h4> 
@@ -54,12 +54,13 @@
     <div class="grid-container">
       <form id="dollar-calc" class="bg-white form-box">
 
-        <div class="grid-x align-center">
-          <div class="cell small-3">
-           <button type="button" id="calc-in-dollar" class="button expanded">Calculate using $USD</button>
+        <!-- Buttons for selecting which type of input to use -->
+        <div class="grid-x align-center align-middle btn-group">
+          <div class="cell small-6 medium-4">
+           <button type="button" id="calc-in-dollar" class="button expanded left-switch-btn btn-active align-middle">Calculate using $USD</button>
           </div>
-          <div class="cell small-3">  
-            <button type="button" id="calc-in-crypto" class="button">Calculate using Cryptocurrency</button>
+          <div class="cell small-6 medium-4">  
+            <button type="button" id="calc-in-crypto" class="button expanded right-switch-btn btn-inactive align-middle">Calculate using Cryptocurrency</button>
           </div>
         </div>
 
