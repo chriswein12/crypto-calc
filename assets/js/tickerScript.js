@@ -30,10 +30,12 @@ fetch(realTimeApiUrl)
 // Creating html object to display
 var displayExchangeBtc = function(exchange) {
     // clearing previous search
+    if(exchange["Note"] !== "Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency."){
+
     var formSearch = document.getElementById("coinPriceBtc")
         if (formSearch)
         formSearch.parentNode.removeChild(formSearch);
-
+}
     // creating dom to display on index html
     var cryptoExchangeBtc = document.createElement("h5")
     cryptoExchangeBtc.id = "coinPriceBtc"
@@ -66,10 +68,11 @@ var tickerEth = function(){
     // Creating html object to display
     var displayExchangeEth = function(exchange) {
         // clearing previous search
+        if(exchange["Note"] !== "Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency."){
         var formSearch = document.getElementById("coinPriceEth")
             if (formSearch)
             formSearch.parentNode.removeChild(formSearch);
-    
+        }
         // creating dom to display on index html
         var cryptoExchangeEth = document.createElement("h5")
         cryptoExchangeEth.id = "coinPriceEth"
@@ -103,10 +106,12 @@ var tickerXrp = function(){
       // Creating html object to display
    var displayExchangeXrp = function(exchange) {
        // clearing previous search
+       if(exchange["Note"] !== "Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency."){
+
        var formSearch = document.getElementById("coinPriceXrp")
            if (formSearch)
            formSearch.parentNode.removeChild(formSearch);
-   
+       }
        // creating dom to display on index html
        var cryptoExchangeXrp = document.createElement("h5")
        cryptoExchangeXrp.id = "coinPriceXrp"
@@ -138,11 +143,14 @@ var tickerUsdt = function(){
 
    // Creating html object to display
    var displayExchangeUsdt = function(exchange) {
+       console.log(exchange)
+       if(exchange["Note"] !== "Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency."){
+       
        // clearing previous search
        var formSearch = document.getElementById("coinPriceUsdt")
            if (formSearch)
            formSearch.parentNode.removeChild(formSearch);
-   
+    }
        // creating dom to display on index html
        var cryptoExchangeUsdt = document.createElement("h5")
        cryptoExchangeUsdt.id = "coinPriceUsdt"
@@ -173,12 +181,14 @@ var tickerUsdt = function(){
    }
    
    // Creating html object to display
-   var displayExchangeLtc = function(exchange) {
+   var displayExchangeLtc = function(exchange) {    
+       console.dir(exchange)
        // clearing previous search
+       if(exchange["Note"] !== "Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency."){
        var formSearch = document.getElementById("coinPriceLtc")
            if (formSearch)
            formSearch.parentNode.removeChild(formSearch);
-   
+       }
        // creating dom to display on index html
        var cryptoExchangeLtc = document.createElement("h5")
        cryptoExchangeLtc.id = "coinPriceLtc"
@@ -192,20 +202,20 @@ var tickerUsdt = function(){
    }
 
 // Intial call
-// tickerBtc();
-// tickerEth();
-// tickerXrp();
-// tickerUsdt();
-// tickerLtc();
+tickerBtc();
+tickerEth();
+tickerXrp();
+tickerUsdt();
+tickerLtc();
 
-// // refresh
-// var refresh = function () {
-//     tickerBtc();
-//     setTimeout(tickerEth, 12000);
-//     setTimeout(tickerXrp, 24000);  
-//     setTimeout(tickerUsdt, 36000); 
-//     setTimeout(tickerLtc, 48000);   
-// };
-// var timer = setInterval(refresh, 61000);
+// refresh
+var refresh = function () {
+    tickerBtc();
+    setTimeout(tickerEth, 12000);
+    setTimeout(tickerXrp, 24000);  
+    setTimeout(tickerUsdt, 36000); 
+    setTimeout(tickerLtc, 48000);   
+};
+var timer = setInterval(refresh, 61000);
 
 
