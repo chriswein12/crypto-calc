@@ -202,20 +202,20 @@ var tickerUsdt = function(){
    }
 
 // Intial call
-tickerBtc();
-tickerEth();
-tickerXrp();
-tickerUsdt();
-tickerLtc();
+// tickerBtc();
+// tickerEth();
+// tickerXrp();
+// tickerUsdt();
+// tickerLtc();
 
-// refresh
-var refresh = function () {
-    tickerBtc();
-    setTimeout(tickerEth, 12000);
-    setTimeout(tickerXrp, 24000);  
-    setTimeout(tickerUsdt, 36000); 
-    setTimeout(tickerLtc, 48000);   
-};
-var timer = setInterval(refresh, 61000);
+// // refresh
+// var refresh = function () {
+//     tickerBtc();
+//     setTimeout(tickerEth, 12000);
+//     setTimeout(tickerXrp, 24000);  
+//     setTimeout(tickerUsdt, 36000); 
+//     setTimeout(tickerLtc, 48000);   
+// };
+// var timer = setInterval(refresh, 61000);
 
 

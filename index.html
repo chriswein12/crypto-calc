@@ -70,7 +70,7 @@
           <div class="cell medium-7">
             <label for="dollar-amount">Amount in USD:
               <div class="input-group">
-                <span class="input-group-label">$</span>
+                <span id="dollar-icon" class="input-group-label">$</span>
                 <input id="dollar-amount" class="input-group-field" type="number">
               </div>
             </label>
@@ -82,7 +82,7 @@
           <div class="cell medium-7">
             <label for="crypto-amount">Amount of Crypto:
               <div class="input-group">
-                <input id="crypto-amount" class="input-group-field" type="number">
+                <input id="crypto-amount" class="input-group-field input-box" type="number">
               </div>
             </label>
           </div>
@@ -92,7 +92,7 @@
         <div class="grid-x grid-margin-x align-center">
           <div class="cell medium-7">
             <label for="crypto-select">Purchased into:</label>
-            <select name= "crypto" id="crypto-select">
+            <select name= "crypto" id="crypto-select" class="input-box">
               <option value="">Select a cryptocurrency</option>
               <option value="btc" >Bitcoin</option>
               <option value="eth">Ethereum</option>
@@ -111,10 +111,10 @@
         <!-- Input for the start and end calculation dates -->
         <div class="grid-x grid-margin-x align-center">
           <label class="cell medium-5">Starting calculation date:
-            <input type="date" id="start-date" placeholder="mm/dd/yyyy" autocomplete="off" />
+            <input type="date" id="start-date" class="input-box" placeholder="mm/dd/yyyy" autocomplete="off" />
           </label>
           <label class="cell medium-5">Ending calculation date:
-            <input type="date" id="end-date" placeholder="mm/dd/yyyy" autocomplete="off" />
+            <input type="date" id="end-date" class="input-box" placeholder="mm/dd/yyyy" autocomplete="off" />
           </label>
         </div>
 
