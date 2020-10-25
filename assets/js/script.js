@@ -16,7 +16,7 @@ var getCryptoData = function(crypto){
                 response.json().then(function(data){ 
                     calculateStats(data);
                     // verifing dat is correct in console           
-                    console.log(data);                
+                    console.dir(data);                
                 });
                 //error handler
             } else {
@@ -84,13 +84,7 @@ $("#calc-form #calculate-button").click(function(event) {
         $('#start-date').attr('disabled', true);
         $('#end-date').attr('disabled', true);
         $('#calculate-button').attr('disabled', true);
-        $('#clear-button').attr('disabled', true);
-
-        var search = {
-            dollarAmountEntered: dollarAmount,
-            cryptoAmountEntered: cryptoAmount,
-            cryptoTypeEntered: cryptoSelected
-        }     
+        $('#clear-button').attr('disabled', true);  
 
         // pass selection to the fetch function
         getCryptoData(cryptoSelected);
@@ -217,9 +211,9 @@ var displayOutput = function(outputs) {
 }
 
 // Clear Form button function
-$("#clear-button").click(function() {
-    $("#calc-form").reset();
-});
+// $("#clear-button").click(function() {
+//     $("#calc-form").reset();
+// });
 
 // Start date selection
 
