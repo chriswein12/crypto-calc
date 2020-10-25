@@ -123,13 +123,18 @@
            <button type="submit" id="calculate-button" class="button expanded">Calculate</button>
           </div>
         </div>
-        <div class="grid-x grid-margin-x align-center">  
-          <button type="reset" id="clear-button" class="button">Clear Form</button>
+        <div class="grid-x align-center"> 
+          <div class="cell small-6 large-3 text-center"> 
+            <button type="button" data-open="previousSearches" id="previous-searches" class="button">Previous Searches</button>
+          </div>
+          <div class="cell small-6 large-3 text-center"> 
+            <button type="reset" id="clear-button" class="button">Clear Form</button>
+          </div>
         </div>
       </form>
     </div>
 
-          <!-- Output Div -->
+    <!-- Output Div -->
     <div id="output-box" class="crypto-display">      
       <h3 class="text-center">Results</h3>
 
@@ -183,10 +188,49 @@
     <h6 class="footer-text text-white text-right">Created by Chris Wein and John Anderson</h6>
   </footer>
 
+  <!-- Modal for previous searches -->
+  <div class="large reveal" id="previousSearches" data-reveal>
+    <div id="no-previous-searches">
+      <h4>Note:</h4>
+      <p>There are currently no previous searches saved.</p>
+    </div>
+    <button class="close-button" data-close aria-label="Close modal" type="button">
+      <span aria-hidden="true">&times;</span>
+    </button> 
+    <div id="table-container">
+      <h3>Previous Searches</h3>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button> 
+      <table id="previous-searches-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Crypto Amount</th>
+            <th>Crypto Type</th>
+            <th>Starting Date</th>
+            <th>Starting Dollar Value</th>
+            <th>Ending Date</th>
+            <th>Ending Dollar Value</th>
+            <th>Percent Change</th>
+            <th>Change in Dollar Value</th>
+          </tr>
+        </thead>
+        <tbody id="table-data"></tbody>
+      </table>
+      <button type="reset" id="clear-searches" class="button">Clear Previous Searches</button>
+    </div>
+  </div>
+
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+  <script src="./assets/js/vendor/what-input.js"></script>
+  <script src="./assets/js/vendor/foundation.min.js"></script>
+  <script>
+    $(document).foundation();
+  </script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script> -->
   <script src="./assets/js/script.js"></script>
   <script src="./assets/js/tickerScript.js"></script>
 

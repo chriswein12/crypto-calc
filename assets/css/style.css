@@ -60,6 +60,7 @@ button {
 }
 
 .btn-group {
+  margin-top: 10px;
   margin-bottom: 20px;
 }
 
@@ -153,21 +154,28 @@ a:visited{
 
 #calculate-button {
   margin-top: 25px;
-  margin-bottom: 10px;
+  margin-bottom: 25px;
   border-radius: 5px;
   height: 50px;
+  box-shadow: 0 8px 8px 0 rgba(35,35,35,.16); 
+}
+
+#clear-searches {
+  margin-top: 25px;
+  margin-bottom: 10px;
+  border-radius: 5px;
   font-size: 1.1rem;
   box-shadow: 0 8px 8px 0 rgba(35,35,35,.16); 
 }
 
-#clear-button {
+#clear-button, #previous-searches {
   background-color: rgba(238, 238, 238, 0);
   color: rgb(92, 92, 92);
   text-decoration: underline;
   margin: 0;
 }
 
-#clear-button:hover {
+#clear-button:hover, #previous-searches:hover {
 color: black;
 }
 
@@ -191,4 +199,8 @@ footer {
 
 .footer-text {
   padding: 5px 20px;
+}
+
+.bold {
+  font-weight: bold;
 }

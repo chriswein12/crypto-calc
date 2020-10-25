@@ -86,6 +86,12 @@ $("#calc-form #calculate-button").click(function(event) {
         $('#calculate-button').attr('disabled', true);
         $('#clear-button').attr('disabled', true);
 
+        var search = {
+            dollarAmountEntered: dollarAmount,
+            cryptoAmountEntered: cryptoAmount,
+            cryptoTypeEntered: cryptoSelected
+        }     
+
         // pass selection to the fetch function
         getCryptoData(cryptoSelected);
     };
@@ -145,6 +151,12 @@ var calculateStats = function(cryptoData) {
         valueChange: "$" + ((Math.round(Math.abs(gainLoss) * 100)/100).toFixed(2)).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'),
         sign: sign
     };
+
+    var searches = JSON.parse(localStorage.getItem("previousSearches")) || [];
+    console.log(searches)
+
+    searches.push(outputs);
+    localStorage.setItem("previousSearches", JSON.stringify(searches));   
 
     // sending object to display function
     displayOutput(outputs);
@@ -246,3 +258,57 @@ $("#end-date").datepicker({
         console.log(date);
     }
 });
+
+$("#previous-searches").click(function() {
+    var searches = JSON.parse(localStorage.getItem("previousSearches"));
+    var tableDataEl = document.querySelector("#table-data");
+    (tableDataEl).textContent = "";
+
+    $("#no-previous-searches").addClass("crypto-display");
+    $("#table-container").addClass("crypto-display");
+
+
+    if (!searches) {
+        $("#no-previous-searches").removeClass("crypto-display");
+    }
+    else {
+        $("#table-container").removeClass("crypto-display");
+        searches.reverse();
+        if (searches.length < 20) {
+            limit = searches.length;
+        } else {
+            limit = 20;
+        }
+
+        for (i = 0; i < limit; i++) {
+            var tableRow = $("<tr>");
+            var countTd = $("<td>").text(i + 1);
+            var cryptoAmountTd = $("<td>").text(searches[i].cryptoAmount);
+            var cryptoTypeTd = $("<td>").text(searches[i].cryptoType);
+            var startDateTd = $("<td>").text(searches[i].sDate);
+            var startDollarValueTd = $("<td>").text(searches[i].sValue);
+            var endDateTd = $("<td>").text(searches[i].eDate);
+            var endDollarValueTd = $("<td>").text(searches[i].eValue);
+            var percentChangeTd = $("<td>").text(searches[i].percentChange);
+            var valueChangeTd = $("<td>")
+                .addClass("bold")
+                .text(searches[i].valueChange);
+            
+
+
+            countTd.appendTo(tableRow);
+            cryptoAmountTd.appendTo(tableRow);
+            cryptoTypeTd.appendTo(tableRow);
+            startDateTd.appendTo(tableRow);
+            startDollarValueTd.appendTo(tableRow);
+            endDateTd.appendTo(tableRow);
+            endDollarValueTd.appendTo(tableRow);
+            percentChangeTd.appendTo(tableRow);
+            valueChangeTd.appendTo(tableRow);
+
+            tableRow.appendTo(tableDataEl);
+        }
+    }
+
+
+})
