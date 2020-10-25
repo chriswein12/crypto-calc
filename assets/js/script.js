@@ -25,8 +25,42 @@ var getCryptoData = function(crypto){
     }); 
 }
 
+$("#calc-in-crypto").click(function() {
+    $("#calc-in-dollar").removeClass("btn-active");
+    $("#calc-in-dollar").addClass("btn-inactive");
+    $("#calc-in-crypto").removeClass("btn-inactive");
+    $("#calc-in-crypto").addClass("btn-active");
+
+    $("#crypto-input-container").removeClass("crypto-display");
+    $("#dollar-amount").val("");
+    $("#dollar-input-container").addClass("crypto-display")
+
+    $("#crypto-select-container").appendTo("#crypto-input-container");
+    $("#crypto-select-label").text("Type of cryptocurrency:")
+    $("#crypto-select-container").removeClass("large-7");
+    $("#crypto-select-container").addClass("large-6");
+
+})
+
+$("#calc-in-dollar").click(function() {
+    $("#calc-in-dollar").removeClass("btn-inactive");
+    $("#calc-in-dollar").addClass("btn-active");
+    $("#calc-in-crypto").removeClass("btn-active");
+    $("#calc-in-crypto").addClass("btn-inactive");
+
+    $("#dollar-input-container").removeClass("crypto-display");
+    $("#crypto-amount").val("");
+    $("#crypto-input-container").addClass("crypto-display")
+
+    $("#crypto-select-container").appendTo("#original-select-container");
+    $("#crypto-select-label").text("Purchased into:")
+    $("#crypto-select-container").removeClass("large-6");
+    $("#crypto-select-container").addClass("large-7");
+})
+
+
 // on button click, function checks for valid data, and then sends the type of cryptocurrency to the fetch function
-$("#dollar-calc #calculate-button").click(function(event) {
+$("#calc-form #calculate-button").click(function(event) {
     event.preventDefault();
     var dollarAmount = document.getElementById("dollar-amount").value;
     var cryptoSelected = document.getElementById("crypto-select").value;
@@ -124,7 +158,7 @@ var displayOutput = function(outputs) {
     outputContainerEl.removeAttribute("class");
 
     var outputSummaryEl = document.querySelector("#output-summary");
-    outputSummaryEl.textContent = "Your " + outputs.cryptoFullName + " " + outputs.sign + " in value by " + outputs.valueChange;
+    outputSummaryEl.textContent = "Your " + outputs.cryptoFullName + " " + outputs.sign + " in value by " + outputs.valueChange + ".";
     var percentChangeTitleEl = document.querySelector("#percent-change-title");
     percentChangeTitleEl.textContent = "Percent change: " + outputs.percentChange;
    
@@ -171,8 +205,8 @@ var displayOutput = function(outputs) {
 }
 
 // Clear Form button function
-$("#dollar-calc #calculate-button").click(function(event) {
-    $("#dollar-calc").reset();
+$("#clear-button").click(function() {
+    $("#calc-form").reset();
 });
 
 // Start date selection

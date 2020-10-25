@@ -55,6 +55,10 @@ header {
   margin: 0px 10% 50px 10%;
 }
 
+button {
+  font-weight: bold;
+}
+
 .btn-group {
   margin-bottom: 10px;
 }
@@ -82,16 +86,29 @@ header {
 
 .btn-inactive {
   background-color: rgb(219, 219, 219);
+  transition: height .25s, box-shadow .25s, background-color .25s, font-size .25s, border-radius .25s;
   color: black;
 }
 
 .btn-inactive:hover {
   height: 50px;
   border-radius: 5px;
+  background-color: rgb(201, 201, 201);
   box-shadow: 0 8px 8px 0 rgba(35,35,35,.16);
+  color: black;
+}
+
+.button:focus {
+  outline: 0;
+  border: none;
+  background-color: #1779ba;
 }
 
 .input-box {
+  border-radius: 5px;
+}
+
+#crypto-amount {
   border-radius: 5px;
 }
 
@@ -103,14 +120,22 @@ header {
   border-radius: 5px 0 0 5px;
 }
 
-.section-title {
-  margin-top: 30px;
+label {
+  font-size: 1.1em;
 }
 
-button:focus {
-  outline: 0;
-  border: none;
+#output-summary {
+  font-size: 1.9375em;
+}
 
+h5 {
+   font-weight: bold;
+   font-size: 1.1em;
+}
+
+.section-title {
+  margin-top: 30px;
+  font-size: 2.5em;
 }
 
 a:link{

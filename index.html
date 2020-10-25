@@ -21,23 +21,23 @@
   <section>
     <div>
       <div class="grid-x grid-margin-x align-center">
-        <h4 class="cell small-4 medium-2  text-center  ">
+        <h4 class="cell small-3 large-2  text-center  ">
           <a href="https://coinmarketcap.com/currencies/bitcoin/" target="_blank">Bitcoin </a>
           <span class="text-center" id="btc"></span>
          </h4>   
-        <h4 class="cell small-4 medium-2 text-center" >
+        <h4 class="cell small-3 large-2 text-center" >
           <a href="https://coinmarketcap.com/currencies/ethereum/" target="_blank">Ethereum </a>
           <span class="text-center" id="eth"></span>
         </h4>     
-        <h4 class="cell small-4 medium-2 text-center" >
+        <h4 class="cell small-3 large-2 text-center" >
           <a href="https://coinmarketcap.com/currencies/xrp/" target="_blank" >XRP </a>
           <span class="text-center" id="xrp"></span>
         </h4> 
-        <h4 class="cell small-4 medium-2 text-center show-for-medium" >
+        <h4 class="cell small-4 medium-2 text-center show-for-large" >
           <a href="https://coinmarketcap.com/currencies/tether/" target="_blank" >Tether</a> 
           <span class="text-center" id="usdt"></span>
         </h4> 
-        <h4 class="cell small-4 medium-2 text-center show-for-medium" >
+        <h4 class="cell small-4 medium-2 text-center show-for-large" >
           <a href="https://coinmarketcap.com/currencies/litecoin/" target="_blank" >Litecoin</a> 
           <span class="text-center" id="ltc"></span>
         </h4> 
@@ -52,22 +52,22 @@
    
     <!-- Full form-->
     <div class="grid-container">
-      <form id="dollar-calc" class="bg-white form-box">
+      <form id="calc-form" class="bg-white form-box">
 
         <!-- Buttons for selecting which type of input to use -->
         <div class="grid-x align-center align-middle btn-group">
-          <div class="cell small-6 medium-4">
+          <div class="cell small-6 large-4">
            <button type="button" id="calc-in-dollar" class="button expanded left-switch-btn btn-active align-middle">Calculate using $USD</button>
           </div>
-          <div class="cell small-6 medium-4">  
+          <div class="cell small-6 large-4">  
             <button type="button" id="calc-in-crypto" class="button expanded right-switch-btn btn-inactive align-middle">Calculate using Cryptocurrency</button>
           </div>
         </div>
 
 
         <!-- Input for the dollar amount -->
-        <div class="grid-x grid-margin-x align-center">
-          <div class="cell medium-7">
+        <div id="dollar-input-container" class="grid-x grid-margin-x align-center">
+          <div class="cell large-7">
             <label for="dollar-amount">Amount in USD:
               <div class="input-group">
                 <span id="dollar-icon" class="input-group-label">$</span>
@@ -78,9 +78,9 @@
         </div>
 
         <!-- Input for the crypto amount -->
-        <div class="grid-x grid-margin-x align-center crypto-display">
-          <div class="cell medium-7">
-            <label for="crypto-amount">Amount of Crypto:
+        <div id="crypto-input-container" class="grid-x grid-margin-x align-center crypto-display">
+          <div class="cell large-6">
+            <label for="crypto-amount">Amount of cryptocurrency:
               <div class="input-group">
                 <input id="crypto-amount" class="input-group-field input-box" type="number">
               </div>
@@ -89,9 +89,9 @@
         </div>
 
         <!-- Selection for the Cryptocurrency type -->
-        <div class="grid-x grid-margin-x align-center">
-          <div class="cell medium-7">
-            <label for="crypto-select">Purchased into:</label>
+        <div id="original-select-container" class="grid-x grid-margin-x align-center">
+          <div id="crypto-select-container" class="cell large-7">
+            <label id="crypto-select-label" for="crypto-select">Purchased into:</label>
             <select name= "crypto" id="crypto-select" class="input-box">
               <option value="">Select a cryptocurrency</option>
               <option value="btc" >Bitcoin</option>
@@ -110,10 +110,10 @@
         
         <!-- Input for the start and end calculation dates -->
         <div class="grid-x grid-margin-x align-center">
-          <label class="cell medium-5">Starting calculation date:
+          <label class="cell large-5">Starting calculation date:
             <input type="date" id="start-date" class="input-box" placeholder="mm/dd/yyyy" autocomplete="off" />
           </label>
-          <label class="cell medium-5">Ending calculation date:
+          <label class="cell large-5">Ending calculation date:
             <input type="date" id="end-date" class="input-box" placeholder="mm/dd/yyyy" autocomplete="off" />
           </label>
         </div>
@@ -124,7 +124,7 @@
           </div>
         </div>
         <div class="grid-x grid-margin-x align-center">  
-          <button type="submit" id="clear-button" class="button">Clear Form</button>
+          <button type="reset" id="clear-button" class="button">Clear Form</button>
         </div>
       </form>
     </div>
@@ -138,7 +138,7 @@
         <div id="output-style-box" class="bg-white form-box">
           <div class="grid-x grid-margin-x align-center">
             <div class="cell medium-10">
-              <h4 class="h3 text-center" id="output-summary"></h4>
+              <h4 class="text-center" id="output-summary"></h4>
               <h5 class="text-center" id="percent-change-title"></h5>
               <h6 class="text-center" id="output-dates-summary"></h6>
             </div>
