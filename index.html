@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
     <link rel="stylesheet" href="./assets/css/foundation.css">
@@ -13,7 +12,7 @@
 </head>
 
 <body>
-  <header class="bg-primary">
+  <header>
     <h1 class="text-white">CryptoCalc</h1>
   </header>
 
@@ -48,9 +47,9 @@
   <!-- The rest of the page which will include the form and results -->
   <main>
     <h2 class="text-center section-title">Cryptocurrency Value Calculator</h2>
-    <p class="text-center">- Calculate the change in your cryptocurrency value over time -</p>
+    <p class="text-center">Calculate the change in your cryptocurrency value over time</p>
    
-    <!-- Full form-->
+    <!-- Full Input form-->
     <div class="grid-container">
       <form id="calc-form" class="bg-white form-box">
 
@@ -125,7 +124,7 @@
         </div>
         <div class="grid-x align-center"> 
           <div class="cell small-6 large-3 text-center"> 
-            <button type="button" data-open="previousSearches" id="previous-searches" class="button">Previous Searches</button>
+            <button type="button" data-open="previousSearches" id="previous-searches" class="button">Previous Results</button>
           </div>
           <div class="cell small-6 large-3 text-center"> 
             <button type="reset" id="clear-button" class="button">Clear Form</button>
@@ -136,7 +135,7 @@
 
     <!-- Output Div -->
     <div id="output-box" class="crypto-display">      
-      <h3 class="text-center">Results</h3>
+      <h3 class="text-center results-title">Results</h3>
 
       <!-- Main results showing change in values -->
       <div id="output" class="grid-container">
@@ -184,24 +183,25 @@
     </div>
   </main>
   
-  <footer class="bg-primary">
+  <footer>
     <h6 class="footer-text text-white text-right">Created by Chris Wein and John Anderson</h6>
   </footer>
 
   <!-- Modal for previous searches -->
   <div class="large reveal" id="previousSearches" data-reveal>
     <div id="no-previous-searches">
-      <h4>Note:</h4>
-      <p>There are currently no previous searches saved.</p>
-    </div>
-    <button class="close-button" data-close aria-label="Close modal" type="button">
-      <span aria-hidden="true">&times;</span>
-    </button> 
-    <div id="table-container">
-      <h3>Previous Searches</h3>
       <button class="close-button" data-close aria-label="Close modal" type="button">
         <span aria-hidden="true">&times;</span>
       </button> 
+      <h4>Note:</h4>
+      <p>There are currently no previous results saved.</p>
+    </div>
+
+    <div id="table-container">
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button> 
+      <h3>Previous Results</h3>
       <table id="previous-searches-table">
         <thead>
           <tr>
@@ -220,9 +220,9 @@
       </table>
       <div id="cleared-previous-searches">
         <br>
-        <h5 class="text-center">Previous searches have been cleared.</h5>
+        <h5 class="text-center">Previous results have been cleared.</h5>
       </div>
-      <button type="reset" id="clear-searches" class="button">Clear Previous Searches</button>
+      <button type="reset" id="clear-searches" class="button">Clear Previous Results</button>
     </div>
   </div>
 
