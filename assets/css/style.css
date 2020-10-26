@@ -204,3 +204,11 @@ footer {
 .bold {
   font-weight: bold;
 }
+
+@media screen and (max-width: 575px) {
+  
+  #calc-in-crypto, #calc-in-dollar {
+    font-size: .7em;
+  }
+
+}

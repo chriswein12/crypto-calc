@@ -20,17 +20,19 @@ var getCryptoData = function(crypto){
                 });
                 //error handler
             } else {
-                alert("Error: " + response.statusText);
+                $('#fetch-fail').foundation('open');
             }        
     }); 
 }
 
+// function to switch the form from calculating in dollars to calculating in crypto
 $("#calc-in-crypto").click(function() {
     $("#calc-in-dollar").removeClass("btn-active");
     $("#calc-in-dollar").addClass("btn-inactive");
     $("#calc-in-crypto").removeClass("btn-inactive");
     $("#calc-in-crypto").addClass("btn-active");
 
+    // brings up the 
     $("#crypto-input-container").removeClass("crypto-display");
     $("#dollar-amount").val("");
     $("#dollar-input-container").addClass("crypto-display")
@@ -42,6 +44,7 @@ $("#calc-in-crypto").click(function() {
 
 })
 
+// function to switch the form from calculating in crypto to calculating in dollars
 $("#calc-in-dollar").click(function() {
     $("#calc-in-dollar").removeClass("btn-inactive");
     $("#calc-in-dollar").addClass("btn-active");
@@ -69,13 +72,13 @@ $("#calc-form #calculate-button").click(function(event) {
     var cryptoAmount = document.getElementById("crypto-amount").value;
 
     if(dollarAmount === "" && cryptoAmount ==="") {
-        alert("Please enter in an amount");
+        $('#amount-empty').foundation('open');
     } else if ((Math.sign(dollarAmount) === -1) || (Math.sign(cryptoAmount) === -1)) {
-        alert("Amount cannot be negative")
+        $('#amount-negative').foundation('open');
     } else if (cryptoSelected === "") {
-        alert("Please select a cryptocurrency");
+        $('#no-crypto-select').foundation('open');
     } else if (startDate === "" || endDate === "") {
-        alert ("Please enter both a start and end date");
+        $('#no-previous-searches').foundation('open');
     } else {
         // disable to input fields until the fetch, calculations, and display are complete so user can't change data halfway through
         $('#dollar-amount').attr('disabled', true);
@@ -269,10 +272,10 @@ $("#previous-searches").click(function() {
     else {
         $("#table-container").removeClass("crypto-display");
         searches.reverse();
-        if (searches.length < 20) {
-            limit = searches.length;
+        if (searches.length < 15) {
+           var limit = searches.length;
         } else {
-            limit = 20;
+            limit = 15;
         }
 
         for (i = 0; i < limit; i++) {

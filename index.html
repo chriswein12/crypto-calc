@@ -21,15 +21,15 @@
   <section>
     <div>
       <div class="grid-x grid-margin-x align-center">
-        <h4 class="cell small-3 large-2  text-center  ">
+        <h4 class="cell small-4 large-2  text-center  ">
           <a href="https://coinmarketcap.com/currencies/bitcoin/" target="_blank">Bitcoin </a>
           <span class="text-center" id="btc"></span>
          </h4>   
-        <h4 class="cell small-3 large-2 text-center" >
+        <h4 class="cell small-4 large-2 text-center" >
           <a href="https://coinmarketcap.com/currencies/ethereum/" target="_blank">Ethereum </a>
           <span class="text-center" id="eth"></span>
         </h4>     
-        <h4 class="cell small-3 large-2 text-center" >
+        <h4 class="cell small-4 large-2 text-center" >
           <a href="https://coinmarketcap.com/currencies/xrp/" target="_blank" >XRP </a>
           <span class="text-center" id="xrp"></span>
         </h4> 
@@ -226,6 +226,57 @@
     </div>
   </div>
 
+  <!-- Error Modals -->
+  <div class="reveal" id="amount-empty" data-reveal>
+    <div id="no-previous-searches">
+      <h4>Note:</h4>
+      <p>Please enter in an amount.</p>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button> 
+    </div>
+  </div>
+
+  <div class="reveal" id="amount-negative" data-reveal>
+    <div id="no-previous-searches">
+      <h4>Note:</h4>
+      <p>Amount cannot be negative.</p>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button> 
+    </div>
+  </div>
+
+  <div class="reveal" id="no-crypto-select" data-reveal>
+    <div id="no-previous-searches">
+      <h4>Note:</h4>
+      <p>Please select a cryptocurrency.</p>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button> 
+    </div>
+  </div>
+
+  <div class="reveal" id="dates-empty" data-reveal>
+    <div id="no-previous-searches">
+      <h4>Note:</h4>
+      <p>Please enter both a start and end date.</p>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button> 
+    </div>
+  </div>
+
+  <div class="reveal" id="fetch-fail" data-reveal>
+    <div id="no-previous-searches">
+      <h4>Note:</h4>
+      <p>Unable to retrieve cryptocurrency information at this time.</p>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button> 
+    </div>
+  </div>
+
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
@@ -234,7 +285,6 @@
   <script>
     $(document).foundation();
   </script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script> -->
   <script src="./assets/js/script.js"></script>
   <script src="./assets/js/tickerScript.js"></script>
 
