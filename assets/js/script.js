@@ -13,10 +13,23 @@ var getCryptoData = function(crypto){
     .then(function(response) {
         // request was successful
         if (response.ok){       
-                response.json().then(function(data){ 
+                response.json().then(function(data){
+                    console.dir(data);  
+                    if(data["Note"] !== "Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency."){
                     calculateStats(data);
-                    // verifing dat is correct in console           
-                    console.dir(data);                
+                    }
+                    else {
+                        $('#fetch-limit').foundation('open');
+
+                        // Re-enable the form fields and buttons
+                        $('#dollar-amount').attr('disabled', false);
+                        $('#crypto-amount').attr('disabled', false);
+                        $('#crypto-select').attr('disabled', false);
+                        $('#start-date').attr('disabled', false);
+                        $('#end-date').attr('disabled', false);
+                        $('#calculate-button').attr('disabled', false);
+                        $('#clear-button').attr('disabled', false);
+                    }
                 });
                 //error handler
             } else {
@@ -82,7 +95,7 @@ $("#calc-form #calculate-button").click(function(event) {
     } else if (cryptoSelected === "") {
         $('#no-crypto-select').foundation('open');
     } else if (startDate === "" || endDate === "") {
-        $('#no-previous-searches').foundation('open');
+        $('#dates-empty').foundation('open');
     } else {
         // disable to input fields until the fetch, calculations, and display are complete so user can't change data and cause errors while it's running
         $('#dollar-amount').attr('disabled', true);
