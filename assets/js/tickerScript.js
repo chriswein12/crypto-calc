@@ -30,14 +30,16 @@ fetch(realTimeApiUrl)
 // Creating html object to display
 var displayExchangeBtc = function(exchange) {
     // clearing previous search
+    if(exchange["Note"] !== "Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency."){
+
     var formSearch = document.getElementById("coinPriceBtc")
         if (formSearch)
         formSearch.parentNode.removeChild(formSearch);
-
+}
     // creating dom to display on index html
     var cryptoExchangeBtc = document.createElement("h5")
     cryptoExchangeBtc.id = "coinPriceBtc"
-    cryptoExchangeBtc.textContent = "$ " + Math.round( (exchange["Realtime Currency Exchange Rate"]["5. Exchange Rate"])*10000)/10000;
+    cryptoExchangeBtc.textContent = "$ " + (Math.round( (exchange["Realtime Currency Exchange Rate"]["5. Exchange Rate"])*10000)/10000).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     
     // attaching crypto close on html container
     cryptoExchangeElBtc.appendChild(cryptoExchangeBtc);
@@ -66,14 +68,15 @@ var tickerEth = function(){
     // Creating html object to display
     var displayExchangeEth = function(exchange) {
         // clearing previous search
+        if(exchange["Note"] !== "Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency."){
         var formSearch = document.getElementById("coinPriceEth")
             if (formSearch)
             formSearch.parentNode.removeChild(formSearch);
-    
+        }
         // creating dom to display on index html
         var cryptoExchangeEth = document.createElement("h5")
         cryptoExchangeEth.id = "coinPriceEth"
-        cryptoExchangeEth.textContent = "$ " + Math.round( (exchange["Realtime Currency Exchange Rate"]["5. Exchange Rate"])*10000)/10000;
+        cryptoExchangeEth.textContent = "$ " + (Math.round( (exchange["Realtime Currency Exchange Rate"]["5. Exchange Rate"])*10000)/10000).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
         
         // attaching crypto close on html container
         cryptoExchangeElEth.appendChild(cryptoExchangeEth);
@@ -103,14 +106,16 @@ var tickerXrp = function(){
       // Creating html object to display
    var displayExchangeXrp = function(exchange) {
        // clearing previous search
+       if(exchange["Note"] !== "Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency."){
+
        var formSearch = document.getElementById("coinPriceXrp")
            if (formSearch)
            formSearch.parentNode.removeChild(formSearch);
-   
+       }
        // creating dom to display on index html
        var cryptoExchangeXrp = document.createElement("h5")
        cryptoExchangeXrp.id = "coinPriceXrp"
-       cryptoExchangeXrp.textContent = "$ " + Math.round( (exchange["Realtime Currency Exchange Rate"]["5. Exchange Rate"])*10000)/10000;
+       cryptoExchangeXrp.textContent = "$ " + (Math.round( (exchange["Realtime Currency Exchange Rate"]["5. Exchange Rate"])*10000)/10000).toFixed(4).replace('$1,');
        
        // attaching crypto close on html container
        cryptoExchangeElXrp.appendChild(cryptoExchangeXrp);
@@ -138,15 +143,18 @@ var tickerUsdt = function(){
 
    // Creating html object to display
    var displayExchangeUsdt = function(exchange) {
+       console.log(exchange)
+       if(exchange["Note"] !== "Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency."){
+       
        // clearing previous search
        var formSearch = document.getElementById("coinPriceUsdt")
            if (formSearch)
            formSearch.parentNode.removeChild(formSearch);
-   
+    }
        // creating dom to display on index html
        var cryptoExchangeUsdt = document.createElement("h5")
        cryptoExchangeUsdt.id = "coinPriceUsdt"
-       cryptoExchangeUsdt.textContent = "$ " + Math.round( (exchange["Realtime Currency Exchange Rate"]["5. Exchange Rate"])*10000)/10000;
+       cryptoExchangeUsdt.textContent = "$ " + (Math.round( (exchange["Realtime Currency Exchange Rate"]["5. Exchange Rate"])*10000)/10000).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
        
        // attaching crypto close on html container
        cryptoExchangeElUsdt.appendChild(cryptoExchangeUsdt);
@@ -161,7 +169,7 @@ var tickerUsdt = function(){
    fetch(realTimeApiUrl)
    .then(function(response) {
        // request was successful          
-       response.okk.json().then(function(exchange){ 
+       response.json().then(function(exchange){ 
            // verifing dat is correct in console  
            displayExchangeLtc(exchange)
            console.log(exchange);                
@@ -173,16 +181,18 @@ var tickerUsdt = function(){
    }
    
    // Creating html object to display
-   var displayExchangeLtc = function(exchange) {
+   var displayExchangeLtc = function(exchange) {    
+       console.dir(exchange)
        // clearing previous search
+       if(exchange["Note"] !== "Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency."){
        var formSearch = document.getElementById("coinPriceLtc")
            if (formSearch)
            formSearch.parentNode.removeChild(formSearch);
-   
+       }
        // creating dom to display on index html
        var cryptoExchangeLtc = document.createElement("h5")
        cryptoExchangeLtc.id = "coinPriceLtc"
-       cryptoExchangeLtc.textContent = "$ " + Math.round( (exchange["Realtime Currency Exchange Rate"]["5. Exchange Rate"])*10000)/10000;
+       cryptoExchangeLtc.textContent = "$ " + (Math.round( (exchange["Realtime Currency Exchange Rate"]["5. Exchange Rate"])*10000)/10000).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
        
        // attaching crypto close on html container
        cryptoExchangeElLtc.appendChild(cryptoExchangeLtc);

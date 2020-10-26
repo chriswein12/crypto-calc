@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
     <link rel="stylesheet" href="./assets/css/foundation.css">
@@ -13,7 +12,7 @@
 </head>
 
 <body>
-  <header class="bg-primary">
+  <header>
     <h1 class="text-white">CryptoCalc</h1>
   </header>
 
@@ -21,23 +20,23 @@
   <section>
     <div>
       <div class="grid-x grid-margin-x align-center">
-        <h4 class="cell medium-2 text-center">
+        <h4 class="cell small-4 large-2  text-center  ">
           <a href="https://coinmarketcap.com/currencies/bitcoin/" target="_blank">Bitcoin </a>
           <span class="text-center" id="btc"></span>
          </h4>   
-        <h4 class="cell medium-2 text-center" >
+        <h4 class="cell small-4 large-2 text-center" >
           <a href="https://coinmarketcap.com/currencies/ethereum/" target="_blank">Ethereum </a>
           <span class="text-center" id="eth"></span>
         </h4>     
-        <h4 class="cell medium-2 text-center" >
+        <h4 class="cell small-4 large-2 text-center" >
           <a href="https://coinmarketcap.com/currencies/xrp/" target="_blank" >XRP </a>
           <span class="text-center" id="xrp"></span>
         </h4> 
-        <h4 class="cell medium-2 text-center" >
+        <h4 class="cell small-4 medium-2 text-center show-for-large" >
           <a href="https://coinmarketcap.com/currencies/tether/" target="_blank" >Tether</a> 
           <span class="text-center" id="usdt"></span>
         </h4> 
-        <h4 class="cell medium-2 text-center" >
+        <h4 class="cell small-4 medium-2 text-center show-for-large" >
           <a href="https://coinmarketcap.com/currencies/litecoin/" target="_blank" >Litecoin</a> 
           <span class="text-center" id="ltc"></span>
         </h4> 
@@ -48,18 +47,29 @@
   <!-- The rest of the page which will include the form and results -->
   <main>
     <h2 class="text-center section-title">Cryptocurrency Value Calculator</h2>
-    <p class="text-center">- Calculate the change in your cryptocurrency value over time -</p>
+    <p class="text-center">Calculate the change in your cryptocurrency value over time</p>
    
-    <!-- Full form-->
+    <!-- Full Input form-->
     <div class="grid-container">
-      <form id="dollar-calc" class="bg-white form-box">
+      <form id="calc-form" class="bg-white form-box">
+
+        <!-- Buttons for selecting which type of input to use -->
+        <div class="grid-x align-center align-middle btn-group">
+          <div class="cell small-6 large-4">
+           <button type="button" id="calc-in-dollar" class="button expanded left-switch-btn btn-active align-middle">Calculate using $USD</button>
+          </div>
+          <div class="cell small-6 large-4">  
+            <button type="button" id="calc-in-crypto" class="button expanded right-switch-btn btn-inactive align-middle">Calculate using Cryptocurrency</button>
+          </div>
+        </div>
+
 
         <!-- Input for the dollar amount -->
-        <div class="grid-x grid-margin-x align-center">
-          <div class="cell medium-7">
+        <div id="dollar-input-container" class="grid-x grid-margin-x align-center">
+          <div class="cell large-7">
             <label for="dollar-amount">Amount in USD:
               <div class="input-group">
-                <span class="input-group-label">$</span>
+                <span id="dollar-icon" class="input-group-label">$</span>
                 <input id="dollar-amount" class="input-group-field" type="number">
               </div>
             </label>
@@ -67,21 +77,21 @@
         </div>
 
         <!-- Input for the crypto amount -->
-        <div class="grid-x grid-margin-x align-center crypto-display">
-          <div class="cell medium-7">
-            <label for="crypto-amount">Amount of Crypto:
+        <div id="crypto-input-container" class="grid-x grid-margin-x align-center crypto-display">
+          <div class="cell large-6">
+            <label for="crypto-amount">Amount of cryptocurrency:
               <div class="input-group">
-                <input id="crypto-amount" class="input-group-field" type="number">
+                <input id="crypto-amount" class="input-group-field input-box" type="number">
               </div>
             </label>
           </div>
         </div>
 
         <!-- Selection for the Cryptocurrency type -->
-        <div class="grid-x grid-margin-x align-center">
-          <div class="cell medium-7">
-            <label for="crypto-select">Purchased into:</label>
-            <select name= "crypto" id="crypto-select">
+        <div id="original-select-container" class="grid-x grid-margin-x align-center">
+          <div id="crypto-select-container" class="cell large-7">
+            <label id="crypto-select-label" for="crypto-select">Purchased into:</label>
+            <select name= "crypto" id="crypto-select" class="input-box">
               <option value="">Select a cryptocurrency</option>
               <option value="btc" >Bitcoin</option>
               <option value="eth">Ethereum</option>
@@ -99,11 +109,11 @@
         
         <!-- Input for the start and end calculation dates -->
         <div class="grid-x grid-margin-x align-center">
-          <label class="cell medium-5">Starting calculation date:
-            <input type="date" id="start-date" placeholder="mm/dd/yyyy" autocomplete="off" />
+          <label class="cell large-5">Starting calculation date:
+            <input type="date" id="start-date" class="input-box" placeholder="mm/dd/yyyy" autocomplete="off" />
           </label>
-          <label class="cell medium-5">Ending calculation date:
-            <input type="date" id="end-date" placeholder="mm/dd/yyyy" autocomplete="off" />
+          <label class="cell large-5">Ending calculation date:
+            <input type="date" id="end-date" class="input-box" placeholder="mm/dd/yyyy" autocomplete="off" />
           </label>
         </div>
 
@@ -112,19 +122,27 @@
            <button type="submit" id="calculate-button" class="button expanded">Calculate</button>
           </div>
         </div>
+        <div class="grid-x align-center"> 
+          <div class="cell small-6 large-3 text-center"> 
+            <button type="button" data-open="previousSearches" id="previous-searches" class="button">Previous Results</button>
+          </div>
+          <div class="cell small-6 large-3 text-center"> 
+            <button type="reset" id="clear-button" class="button">Clear Form</button>
+          </div>
+        </div>
       </form>
     </div>
 
-          <!-- Output Div -->
+    <!-- Output Div -->
     <div id="output-box" class="crypto-display">      
-      <h3 class="text-center">Results</h3>
+      <h3 class="text-center results-title">Results</h3>
 
       <!-- Main results showing change in values -->
       <div id="output" class="grid-container">
         <div id="output-style-box" class="bg-white form-box">
           <div class="grid-x grid-margin-x align-center">
             <div class="cell medium-10">
-              <h4 class="h3 text-center" id="output-summary"></h4>
+              <h4 class="text-center" id="output-summary"></h4>
               <h5 class="text-center" id="percent-change-title"></h5>
               <h6 class="text-center" id="output-dates-summary"></h6>
             </div>
@@ -165,14 +183,108 @@
     </div>
   </main>
   
-  <footer class="bg-primary">
+  <footer>
     <h6 class="footer-text text-white text-right">Created by Chris Wein and John Anderson</h6>
   </footer>
+
+  <!-- Modal for previous searches -->
+  <div class="large reveal" id="previousSearches" data-reveal>
+    <div id="no-previous-searches">
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button> 
+      <h4>Note:</h4>
+      <p>There are currently no previous results saved.</p>
+    </div>
+
+    <div id="table-container">
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button> 
+      <h3>Previous Results</h3>
+      <table id="previous-searches-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Crypto Amount</th>
+            <th>Crypto Type</th>
+            <th>Starting Date</th>
+            <th>Starting Dollar Value</th>
+            <th>Ending Date</th>
+            <th>Ending Dollar Value</th>
+            <th>Percent Change</th>
+            <th>Change in Dollar Value</th>
+          </tr>
+        </thead>
+        <tbody id="table-data"></tbody>
+      </table>
+      <div id="cleared-previous-searches">
+        <br>
+        <h5 class="text-center">Previous results have been cleared.</h5>
+      </div>
+      <button type="reset" id="clear-searches" class="button">Clear Previous Results</button>
+    </div>
+  </div>
+
+  <!-- Error Modals -->
+  <div class="reveal" id="amount-empty" data-reveal>
+    <div id="no-previous-searches">
+      <h4>Note:</h4>
+      <p>Please enter in an amount.</p>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button> 
+    </div>
+  </div>
+
+  <div class="reveal" id="amount-negative" data-reveal>
+    <div id="no-previous-searches">
+      <h4>Note:</h4>
+      <p>Amount cannot be negative.</p>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button> 
+    </div>
+  </div>
+
+  <div class="reveal" id="no-crypto-select" data-reveal>
+    <div id="no-previous-searches">
+      <h4>Note:</h4>
+      <p>Please select a cryptocurrency.</p>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button> 
+    </div>
+  </div>
+
+  <div class="reveal" id="dates-empty" data-reveal>
+    <div id="no-previous-searches">
+      <h4>Note:</h4>
+      <p>Please enter both a start and end date.</p>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button> 
+    </div>
+  </div>
+
+  <div class="reveal" id="fetch-fail" data-reveal>
+    <div id="no-previous-searches">
+      <h4>Note:</h4>
+      <p>Unable to retrieve cryptocurrency information at this time.</p>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button> 
+    </div>
+  </div>
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+  <script src="./assets/js/vendor/what-input.js"></script>
+  <script src="./assets/js/vendor/foundation.min.js"></script>
+  <script>
+    $(document).foundation();
+  </script>
   <script src="./assets/js/script.js"></script>
   <script src="./assets/js/tickerScript.js"></script>
 

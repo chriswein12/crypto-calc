@@ -16,31 +16,85 @@ var getCryptoData = function(crypto){
                 response.json().then(function(data){ 
                     calculateStats(data);
                     // verifing dat is correct in console           
-                    console.log(data);                
+                    console.dir(data);                
                 });
                 //error handler
             } else {
-                alert("Error: " + response.statusText);
+                $('#fetch-fail').foundation('open');
             }        
     }); 
 }
 
+// function to switch the form from calculating in dollars to calculating in crypto
+$("#calc-in-crypto").click(function() {
+    $("#calc-in-dollar").removeClass("btn-active");
+    $("#calc-in-dollar").addClass("btn-inactive");
+    $("#calc-in-crypto").removeClass("btn-inactive");
+    $("#calc-in-crypto").addClass("btn-active");
+
+    // brings up the field for entering crypto amount and hides the dollar amount input
+    $("#crypto-input-container").removeClass("crypto-display");
+    $("#dollar-amount").val("");
+    $("#dollar-input-container").addClass("crypto-display")
+
+    // moves the div for the selection dropdown to be in the same line as the crypto amount entry field
+    $("#crypto-select-container").appendTo("#crypto-input-container");
+    $("#crypto-select-label").text("Type of cryptocurrency:")
+    $("#crypto-select-container").removeClass("large-7");
+    $("#crypto-select-container").addClass("large-6");
+
+})
+
+// function to switch the form from calculating in crypto to calculating in dollars
+$("#calc-in-dollar").click(function() {
+    $("#calc-in-dollar").removeClass("btn-inactive");
+    $("#calc-in-dollar").addClass("btn-active");
+    $("#calc-in-crypto").removeClass("btn-active");
+    $("#calc-in-crypto").addClass("btn-inactive");
+
+    // brings up the field for entering dollar amount and hides the crypto amount input
+    $("#dollar-input-container").removeClass("crypto-display");
+    $("#crypto-amount").val("");
+    $("#crypto-input-container").addClass("crypto-display")
+
+    // moves the dropdown selection back to its original div
+    $("#crypto-select-container").appendTo("#original-select-container");
+    $("#crypto-select-label").text("Purchased into:")
+    $("#crypto-select-container").removeClass("large-6");
+    $("#crypto-select-container").addClass("large-7");
+})
+
+
 // on button click, function checks for valid data, and then sends the type of cryptocurrency to the fetch function
-$("#dollar-calc #calculate-button").click(function(event) {
+$("#calc-form #calculate-button").click(function(event) {
     event.preventDefault();
     var dollarAmount = document.getElementById("dollar-amount").value;
     var cryptoSelected = document.getElementById("crypto-select").value;
     var startDate = document.getElementById("start-date").value;
     var endDate = document.getElementById("end-date").value;
+    var cryptoAmount = document.getElementById("crypto-amount").value;
 
-    if(dollarAmount === "" || Math.sign(dollarAmount) === -1) {
-        alert("Invalid");
+    // checks to make sure each field is completed and valid
+    if(dollarAmount === "" && cryptoAmount ==="") {
+        $('#amount-empty').foundation('open');
+    } else if ((Math.sign(dollarAmount) === -1) || (Math.sign(cryptoAmount) === -1)) {
+        $('#amount-negative').foundation('open');
     } else if (cryptoSelected === "") {
-        alert("Select a cryptocurrency");
+        $('#no-crypto-select').foundation('open');
     } else if (startDate === "" || endDate === "") {
-        alert ("Please enter both a start and end date");
+        $('#no-previous-searches').foundation('open');
     } else {
-    getCryptoData(cryptoSelected);
+        // disable to input fields until the fetch, calculations, and display are complete so user can't change data and cause errors while it's running
+        $('#dollar-amount').attr('disabled', true);
+        $('#crypto-amount').attr('disabled', true);
+        $('#crypto-select').attr('disabled', true);
+        $('#start-date').attr('disabled', true);
+        $('#end-date').attr('disabled', true);
+        $('#calculate-button').attr('disabled', true);
+        $('#clear-button').attr('disabled', true);  
+
+        // pass selection to the fetch function
+        getCryptoData(cryptoSelected);
     };
 });
 
@@ -86,6 +140,7 @@ var calculateStats = function(cryptoData) {
     // assigning all variables to an object called outputs
     var outputs = {
         cryptoType: document.getElementById("crypto-select").value.toUpperCase(),
+        cryptoFullName: cryptoData["Meta Data"]["3. Digital Currency Name"],
         sDate: sMonth + "/" + sDay + "/" + sYear,
         eDate: eMonth + "/" + eDay + "/" + eYear,
         sPrice: "$" + (Math.round(startPrice * 100)/100).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'),
@@ -98,6 +153,11 @@ var calculateStats = function(cryptoData) {
         sign: sign
     };
 
+    // set output object to local storage
+    var searches = JSON.parse(localStorage.getItem("previousSearches")) || [];
+    searches.push(outputs);
+    localStorage.setItem("previousSearches", JSON.stringify(searches));   
+
     // sending object to display function
     displayOutput(outputs);
 }
@@ -109,8 +169,9 @@ var displayOutput = function(outputs) {
     // removes the class that hides the diplay
     outputContainerEl.removeAttribute("class");
 
+    // section of the function that displays all of the calculated data, and then scrolls the page down to the results
     var outputSummaryEl = document.querySelector("#output-summary");
-    outputSummaryEl.textContent = "Your " + outputs.cryptoType + " " + outputs.sign + " in value by " + outputs.valueChange;
+    outputSummaryEl.textContent = "Your " + outputs.cryptoFullName + " " + outputs.sign + " in value by " + outputs.valueChange + ".";
     var percentChangeTitleEl = document.querySelector("#percent-change-title");
     percentChangeTitleEl.textContent = "Percent change: " + outputs.percentChange;
    
@@ -145,7 +206,16 @@ var displayOutput = function(outputs) {
         behavior: 'smooth'
     });
 
+    // Re-enable the form fields and buttons
+    $('#dollar-amount').attr('disabled', false);
+    $('#crypto-amount').attr('disabled', false);
+    $('#crypto-select').attr('disabled', false);
+    $('#start-date').attr('disabled', false);
+    $('#end-date').attr('disabled', false);
+    $('#calculate-button').attr('disabled', false);
+    $('#clear-button').attr('disabled', false);
 }
+
 // Start date selection
 $("#start-date").datepicker({ 
     // storing date in a diffrent format from displayed 
@@ -158,11 +228,9 @@ $("#start-date").datepicker({
     maxDate: 0,
     //setting the max date for the second date picker
     onSelect: function(date){
-        var endDate = new Date(date);
-        
 
-        $("#end-date").datepicker("option", "minDate", endDate);
-        console.dir(endDate);
+        $("#end-date").datepicker("option", "minDate", date);
+        console.dir(date);
     }
 });
 
@@ -178,11 +246,72 @@ $("#end-date").datepicker({
     maxDate: 0,
     //setting the max date for the second date picker
     onSelect: function(date){
-        var selectedDate = new Date(date);
-        var startDate = selectedDate;
-
-        $("#start-date").datepicker("option", "maxDate", startDate);
-        console.log(selectedDate);
+                
+        $("#start-date").datepicker("option", "maxDate", date);
+        console.log(date);
     }
 });
 
+// function to display the previous results as a table inside a modal
+$("#previous-searches").click(function() {
+    var searches = JSON.parse(localStorage.getItem("previousSearches"));
+    var tableDataEl = document.querySelector("#table-data");
+    (tableDataEl).textContent = "";
+
+    // hiding all modal divs until the if-else statement determines the correct one to display
+    $("#no-previous-searches").addClass("crypto-display");
+    $("#table-container").addClass("crypto-display");
+    $("#cleared-previous-searches").addClass("crypto-display");
+
+    // check to see which modal div to display
+    if (!searches) {
+        $("#no-previous-searches").removeClass("crypto-display");
+    }
+    else {
+        $("#table-container").removeClass("crypto-display");
+        searches.reverse();
+        if (searches.length < 15) {
+           var limit = searches.length;
+        } else {
+            limit = 15;
+        }
+
+        // loop to display up to 15 of the most recent results
+        for (i = 0; i < limit; i++) {
+            var tableRow = $("<tr>");
+            var countTd = $("<td>").text(i + 1);
+            var cryptoAmountTd = $("<td>").text(searches[i].cryptoAmount);
+            var cryptoTypeTd = $("<td>").text(searches[i].cryptoType);
+            var startDateTd = $("<td>").text(searches[i].sDate);
+            var startDollarValueTd = $("<td>").text(searches[i].sValue);
+            var endDateTd = $("<td>").text(searches[i].eDate);
+            var endDollarValueTd = $("<td>").text(searches[i].eValue);
+            var percentChangeTd = $("<td>").text(searches[i].percentChange);
+            var valueChangeTd = $("<td>")
+                .addClass("bold")
+                .text(searches[i].valueChange);
+            
+            countTd.appendTo(tableRow);
+            cryptoAmountTd.appendTo(tableRow);
+            cryptoTypeTd.appendTo(tableRow);
+            startDateTd.appendTo(tableRow);
+            startDollarValueTd.appendTo(tableRow);
+            endDateTd.appendTo(tableRow);
+            endDollarValueTd.appendTo(tableRow);
+            percentChangeTd.appendTo(tableRow);
+            valueChangeTd.appendTo(tableRow);
+
+            tableRow.appendTo(tableDataEl);
+        }
+    }
+})
+
+// function to clear the local storage object for previousSearches when button is clicked
+$("#clear-searches").click(function() {
+    localStorage.removeItem("previousSearches"); 
+
+    var tableDataEl = document.querySelector("#table-data");
+    (tableDataEl).textContent = "";
+
+    $("#cleared-previous-searches").removeClass("crypto-display");
+})
